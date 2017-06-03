@@ -1,0 +1,14 @@
+SCRIPT_DIR="$(dirname -- "$(readlink -f -- "${(%):-%N}")")"
+export DOTFILES="$(readlink -f -- "${SCRIPT_DIR}/..")"
+
+source "${SCRIPT_DIR}/init.sh"
+setopt GLOB_SUBST
+SOURCE_FILES="
+$(source_recursive_files "${SCRIPT_DIR}/rc.d/" '*.sh')
+$(source_recursive_files "${SCRIPT_DIR}/zshrc.d/" '*.zsh')
+"
+unsetopt GLOB_SUBST
+
+printf %s "${SOURCE_FILES}" | while read -r SOURCE_FILE; do
+	if [ ! -z "${SOURCE_FILE}" ]; then . "${SOURCE_FILE}"; fi
+done 

@@ -1,0 +1,122 @@
+" Vundle Plugin Manager {{{
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+	Plugin 'VundleVim/Vundle.vim'
+	Plugin 'chriskempson/base16-vim'
+	Plugin 'airblade/vim-gitgutter'
+	Plugin 'scrooloose/nerdtree'
+	Plugin 'ryanoasis/vim-devicons'
+	Plugin 'jiangmiao/auto-pairs'
+	Plugin 'ctrlpvim/ctrlp.vim'
+	Plugin 'vim-airline/vim-airline'
+	Plugin 'vim-airline/vim-airline-themes'
+	Plugin 'glench/vim-jinja2-syntax'
+	Plugin 'ternjs/tern_for_vim'
+	Plugin 'sbdchd/neoformat'
+	Plugin 'saltstack/salt-vim'
+call vundle#end()
+" }}}
+" Color Scheme {{{
+if filereadable(expand("~/.vimrc_background"))
+	let base16colorspace=256
+	source ~/.vimrc_background
+else
+	:silent! colorscheme base16-tomorrow-night
+endif
+" }}}
+" Generic Options {{{
+filetype plugin on
+filetype indent on
+syntax enable			" Enable syntax highlighting
+set hidden				" Allow hiding of unsaved buffers
+set history=100			" Remember the last 100 commands
+set ttyfast				" Increase speed of redrawing
+set tabstop=4			" Set tab size to 4 spaces
+set softtabstop=4		" Set soft tab size to 4 spaces
+set shiftwidth=4		" Shift by 4 spaces for auto-indentation
+set smartindent			" Enable smart indentation
+set autoindent			" Enable auto indentation
+set number				" Show line numbers
+set cursorline			" Highlight current line
+set wildmenu			" Enable visual autocomplete for command menu
+set lazyredraw			" Redraw only when needed
+set showmatch			" Highlight matching () / [] / {}
+set incsearch			" Search as soon as characters are entered
+set hlsearch			" Highlight matches when searching
+set foldenable			" Enable folding
+set foldlevelstart=10	" Start folding after 10 lines
+set foldnestmax=10		" Do not nest folding more than 10 times
+set foldmethod=indent	" Fold on indentation level
+set modelines=1			" Use modelines
+let mapleader=","		" Use comma as leader key
+" }}}
+" Keyboard Shortcuts {{{
+" <j>/<k>: Move vertically by visual lines
+nnoremap j gj
+nnoremap k gk
+" <g><V>: Highlight last inserted text
+nnoremap gV `[v`]
+" <Space> Open/close folds
+nnoremap <space> za
+" <Esc><Esc>: Disable search highlights
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+" <Leader><l> Toggle absolute/relative line numbering
+nnoremap <leader>l :call ToggleNumber()<CR>
+" }}}
+" [Plugin] CtrlP {{{
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+" }}}
+" [Plugin] Airline {{{
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_theme = 'base16'
+let g:airline_powerline_fonts = 1
+set laststatus=2
+" }}}
+" [Plugin] NERDTree {{{
+let g:NERDTreeShowHidden=1
+" }}}
+" Autogroups {{{
+augroup configgroup
+	autocmd!
+	autocmd StdinReadPre * let s:std_in=1
+	autocmd VimEnter * highlight clear SignColumn
+	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p | endif
+	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	autocmd BufWritePre *.md,*.php,*.html,*.css,*.py,*.sls,*.yml,*.yaml :call <SID>StripTrailingWhitespaces()
+	autocmd BufWritePre *.js Neoformat
+	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType sls setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
+" }}}
+" Custom Functions {{{
+function! ToggleNumber()
+	if(&relativenumber == 1)
+		set norelativenumber
+		set number
+	else
+		set relativenumber
+	endif
+endfunction
+
+function! <SID>StripTrailingWhitespaces()
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+	%s/\s\+$//e
+	let @/=_s
+	call cursor(l, c)
+endfunction
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0

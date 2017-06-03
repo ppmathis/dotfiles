@@ -1,0 +1,43 @@
+backend = "xr_glx_hybrid";
+vsync = "drm";
+paint-on-overlay = true;
+unredir-if-possible = true;
+xrender-sync = true;
+xrender-sync-fence = true;
+vsync-use-glfinish = true;
+
+shadow = true;
+no-dock-shadow = true;
+no-dnd-shadow = true;
+clear-shadow = true;
+shadow-radius = 10;
+shadow-offset-x = -15;
+shadow-offset-y = -15;
+shadow-opacity = 0.5;
+menu-opacity = 1;
+shadow-exclude = [
+	"class_g = 'Chromium'"
+];
+
+blur-kern = "7x7box";
+blur-background = false;
+blur-background-exclude = [];
+
+fading = true;
+fade-delta = 4;
+fade-in-step = 0.03;
+fade-out-step = 0.03;
+no-fading-openclose = false;
+
+detect-client-opacity = true;
+opacity-rule = [
+	"50:class_g = 'Bspwm' && class_i = 'presel_feedback'",
+	"95:class_g = 'URxvt'"
+];
+
+wintypes: {
+	tooltip = { fade = true; shadow = false; };
+	menu = { shadow = false; };
+	dropdown_menu = { shadow = false; };
+	popup_menu = { shadow = false; };
+}

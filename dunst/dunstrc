@@ -1,0 +1,44 @@
+[global]
+	alignment = left
+	allow_markup = yes
+	follow = mouse
+	font = Monaco 10
+	format = "<b>%s</b>\n%b"
+	geometry = "300x10-10+48"
+	horizontal_padding = 10
+	icon_position = left
+	idle_threshold = 120
+	indicate_hidden = yes
+	line_height = 5
+	monitor = 0
+	padding = 10
+	separator_color = "#202830"
+	separator_height = 1
+	show_age_threshold = 60
+	show_indicators = no
+	sort = yes
+	startup_notification = false
+	transparency = 0
+
+[shortcuts]
+	close = ctrl+space
+	close_all = ctrl+shift+space
+	context = ctrl+shift+period
+	history = ctrl+section
+
+[urgency_low]
+	background = "#2C393F"
+	foreground = "#707880"
+
+[urgency_normal]
+	background = "#37474F"
+	foreground = "#CDD3DE"
+
+[urgency_critical]
+	background = "#EC5F67"
+	foreground = "#D5DBE5"
+
+[brightness]
+	appname = brightness
+	format = "<span font='14'>%s</span>"
+	timeout = 1
