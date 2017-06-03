@@ -22,5 +22,9 @@ function omz_termsupport_preexec {
 	title '${ZSH_THEME_TERM_TAB_TITLE_PREFIX}$CMD' '${ZSH_THEME_TERM_TITLE_PREFIX}%100>...>$LINE%<<'
 }
 
-ZSH_THEME_TERM_TITLE_PREFIX="%n@%M: "
+if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
+	ZSH_THEME_TERM_TITLE_PREFIX="[ssh] %n@%M: "
+else
+	ZSH_THEME_TERM_TITLE_PREFIX="%n@%M: "
+fi
 ZSH_THEME_TERM_TAB_TITLE_PREFIX=$ZSH_THEME_TERM_TITLE_IDLE
