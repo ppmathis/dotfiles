@@ -17,6 +17,10 @@ super + shift + space
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# terminal scratchpad
+alt + s
+	tdrop -m -a -y 35 -w -2 -h 30% urxvt
+
 # keepass auto-type
 ctrl + alt + a
 	/usr/bin/keepass --auto-type
@@ -24,7 +28,6 @@ ctrl + alt + a
 # brightness controls
 XF86MonBrightnessDown
 	~/.local/bin/backlight.sh -
-
 
 XF86MonBrightnessUp
 	~/.local/bin/backlight.sh +
