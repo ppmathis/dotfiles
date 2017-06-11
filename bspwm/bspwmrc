@@ -1,7 +1,9 @@
 #! /bin/sh
 sxhkd &
 
-bspc monitor -d web term chat code music VI VII VIII IX X
+bspc monitor DisplayPort-0 -d I II III
+bspc monitor DisplayPort-1 -d IV V VI
+bspc monitor DisplayPort-2 -d VII VIII IV
 
 bspc config border_width 1
 bspc config window_gap 12
@@ -24,8 +26,10 @@ bspc rule -a URxvt:profanity desktop=^3
 bspc rule -a xfreerdp desktop=^9 state=tiled locked=true private=true
 
 feh --randomize --bg-fill ~/pictures/wallpapers/
-compton --config ~/.config/compton/config -b
 xsetroot -cursor_name left_ptr
 xrdb -merge ~/.Xresources
 redshift &
-polybar top &
+MONITOR=DisplayPort-0 polybar side &
+MONITOR=DisplayPort-1 polybar main &
+MONITOR=DisplayPort-2 polybar side &
+compton --config ~/.config/compton/config &
