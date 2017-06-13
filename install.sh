@@ -54,11 +54,6 @@ fi
 echo "> Finished. Complete package list: ${PACKAGES}"
  # }}}
 
-#  [Package - Generic] Scripts {{{
-package "generic" "scripts" && {
-	link "scripts/backlight.sh" ".local/bin/backlight.sh"
-}
-# }}}
 #  [Package - Generic] Shell {{{
 package "generic" "shell" && {
 	gitdl "https://github.com/chriskempson/base16-shell.git" "base16-shell"
@@ -127,6 +122,11 @@ package "workstation" "dunst" && {
 # [Package - Workstation] redshift {{{
 package "workstation" "redshift" && {
 	link "redshift/redshift.conf" ".config/redshift.conf"
+}
+# }}}
+#  [Package - Workstation] Scripts {{{
+package "workstation" "scripts" && {
+	link "scripts/backlight.sh" ".local/bin/backlight.sh"
 }
 # }}}
 
