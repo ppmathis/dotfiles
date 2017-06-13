@@ -124,6 +124,12 @@ package "workstation" "redshift" && {
 	link "redshift/redshift.conf" ".config/redshift.conf"
 }
 # }}}
+# [Package - Workstation] profanity {{{
+package "workstation" "profanity" && {
+	link "profanity/profrc" ".config/profanity/profrc"
+	link "profanity/base16-tomorrow-night" ".config/profanity/themes/base16-tomorrow-night"
+}
+# }}}
 #  [Package - Workstation] Scripts {{{
 package "workstation" "scripts" && {
 	link "scripts/backlight.sh" ".local/bin/backlight.sh"

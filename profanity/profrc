@@ -1,0 +1,105 @@
+[connection]
+account=cmx-neoxid
+carbons=true
+receipts.request=true
+receipts.send=true
+
+[presence]
+autoaway.mode=away
+autoaway.awaytime=15
+autoaway.xatime=120
+autoaway.awaymessage=AFK for a while
+autoaway.xamessage=AFK for a very long time
+autoaway.check=true
+lastactivity=true
+
+[chatstates]
+enabled=true
+
+[ui]
+vercheck=false
+
+beep=false
+flash=false
+splash=true
+wrap=true
+wins.autotidy=true
+resource.title=true
+resource.message=true
+occupants=true
+occupants.jid=true
+roster=true
+roster.offline=true
+roster.resource=true
+roster.resource.join=false
+roster.presence=true
+roster.status=true
+roster.empty=true
+roster.wrap=true
+roster.priority=true
+roster.contacts=true
+roster.rooms=true
+privileges=true
+presence=true
+intype=true
+enc.warn=true
+tls.show=true
+time.console=%d/%m/%y %H:%M:%S
+time.chat=%d/%m/%y %H:%M:%S
+time.muc=%d/%m/%y %H:%M:%S
+time.mucconfig=%d/%m/%y %H:%M:%S
+time.private=%d/%m/%y %H:%M:%S
+time.xmlconsole=%d/%m/%y %H:%M:%S
+time.statusbar=%H:%M:%S
+time.lastactivity=%d/%m/%y %H:%M:%S
+statuses.console=all
+statuses.chat=all
+statuses.muc=all
+console.muc=all
+roster.by=presence
+roster.order=presence
+roster.unread=after
+roster.rooms.order=unread
+roster.rooms.unread=after
+roster.rooms.pos=last
+roster.count=unread
+occupants.size=15
+roster.size=25
+roster.contact.indent=1
+roster.resource.indent=1
+roster.presence.indent=1
+theme=base16-tomorrow-night
+roster.count.zero=true
+roster.unsubscribed=true
+console.private=all
+console.chat=all
+roster.rooms.by=service
+roster.private=room
+roster.rooms.private.char=/
+
+history=true
+
+[notifications]
+typing=false
+sub=true
+message=true
+message.current=true
+room.mention.casesensitive=false
+room.mention.wholeword=false
+room.current=true
+room.text=true
+message.text=true
+room.trigger=false
+typing.current=false
+invite=true
+room.mention=true
+
+[otr]
+otr.char=@
+
+[pgp]
+pgp.char=%
+
+[logging]
+chlog=true
+grlog=true
