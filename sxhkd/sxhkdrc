@@ -32,6 +32,14 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
 	~/.local/bin/backlight.sh +
 
+# volume controls
+XF86AudioLowerVolume
+	pamixer --unmute --decrease 5
+XF86AudioRaiseVolume
+	pamixer --unmute --increase 5
+XF86AudioMute
+	pamixer --toggle-mute
+
 #
 # bspwm hotkeys
 #
