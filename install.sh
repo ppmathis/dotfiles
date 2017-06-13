@@ -133,6 +133,7 @@ package "workstation" "profanity" && {
 #  [Package - Workstation] Scripts {{{
 package "workstation" "scripts" && {
 	link "scripts/backlight.sh" ".local/bin/backlight.sh"
+	link "scripts/wallpaper.sh" ".local/bin/wallpaper.sh"
 }
 # }}}
 
