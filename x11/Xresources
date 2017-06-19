@@ -47,11 +47,26 @@
 *.color20:      base04
 *.color21:      base06
 ! }}}
+! Font Rendering {{{
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+! }}}
 ! URxvt {{{
 URxvt*scrollBar: false
 URxvt*internalBorder: 10
 URxvt*externalBorder: 0
 URxvt*skipBuiltinGlyphs: true
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
 
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
