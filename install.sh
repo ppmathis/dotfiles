@@ -94,6 +94,12 @@ package "workstation" "x11" && {
 	link "x11/Xresources" ".Xresources"
 }
  # }}}
+# [Package - Workstation] GTK {{{
+package "workstation" "gtk" && {
+	link "gtk/gtk2-settings" ".gtkrc-2.0"
+	link "gtk/gtk3-settings" ".config/gtk-3.0/settings.ini"
+}
+# }}}
 # [Package - Workstation] bspwm {{{
 package "workstation" "bspwm" && {
 	link "bspwm/bspwmrc" ".config/bspwm/bspwmrc"
