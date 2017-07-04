@@ -22,7 +22,7 @@ alt + s
 	tdrop -m -a -y 35 -w -2 -h 30% urxvt
 
 # keepass auto-type
-ctrl + alt + a
+ctrl + alt + k
 	/usr/bin/keepass --auto-type
 
 # brightness controls
