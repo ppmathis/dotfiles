@@ -54,6 +54,12 @@ fi
 echo "> Finished. Complete package list: ${PACKAGES}"
  # }}}
 
+#  [Package - Generic] Cleanup {{{
+package "generic" "cleanup" && {
+	rm -rf "${DOTFILES_SOURCE}/thirdparty/antigen"
+	rm -rf "${DOTFILES_TARGET}/.antigen"
+}
+# }}}
 #  [Package - Generic] Shell {{{
 package "generic" "shell" && {
 	gitdl "https://github.com/chriskempson/base16-shell.git" "base16-shell"
