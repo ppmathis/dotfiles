@@ -81,5 +81,13 @@ URxvt*boldFont: xft:SauceCodePro Nerd Font:bold:size=12:antialias=true:hinting=t
 URxvt*italicFont: xft:SauceCodePro Nerd Font:italic:size=12:antialias=true:hinting=true
 URxvt*boldItalicFont: xft:SauceCodePro Nerd Font:bold:italic:size=12:antialias=true:hinting=true
 ! }}}
+! Rofi {{{
+rofi.color-enabled: true
+rofi.color-window: #282a2e, #282a2e, #1d1f21
+rofi.color-normal: #282a2e, #c5c8c6, #282a2e, #282a2e, #ffffff
+rofi.color-active: #282a2e, #81a2be, #282a2e, #282a2e, #81a2be
+rofi.color-urgent: #282a2e, #cc6666, #282a2e, #282a2e, #cc6666
+rofi.separator-style: solid
+! }}}
 
 ! vim:foldmethod=marker:foldlevel=0
