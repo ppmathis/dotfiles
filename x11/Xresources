@@ -56,21 +56,24 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 ! }}}
 ! URxvt {{{
-URxvt*scrollBar: false
 URxvt*internalBorder: 10
 URxvt*externalBorder: 0
+URxvt*scrollBar: false
+URxvt*intensityStyles: false
 URxvt*skipBuiltinGlyphs: true
 
-URxvt.iso14755: false
-URxvt.iso14755_52: false
+URxvt*iso14755: false
+URxvt*iso14755_52: false
+URxvt*keysym.Shift-Control-V: eval:paste_clipboard
+URxvt*keysym.Shift-Control-C: eval:selection_to_clipboard
 
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
+URxvt*perl-ext-common: default,matcher
+URxvt*url-launcher: /usr/bin/xdg-open
+URxvt*matcher.button: 1
 
 URxvt*font: xft:SauceCodePro Nerd Font:regular:size=12:antialias=true:hinting=true
 URxvt*imFont: xft:SauceCodePro Nerd Font:regular:size=12:antialias=true:hinting=true
