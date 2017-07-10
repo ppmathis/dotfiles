@@ -40,6 +40,10 @@ XF86AudioRaiseVolume
 XF86AudioMute
 	pamixer --toggle-mute
 
+# wallpaper rotation
+super + alt + space
+	~/.local/bin/wallpaper.sh
+
 #
 # bspwm hotkeys
 #
