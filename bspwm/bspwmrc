@@ -28,6 +28,6 @@ bspc rule -a URxvt:profanity desktop=^3
 bspc rule -a xfreerdp desktop=^9 state=tiled locked=true private=true
 bspc rule -a keepass2 desktop=^10 state=tiled locked=true private=true
 
-MONITOR=DisplayPort-0 polybar side &
-MONITOR=DisplayPort-1 polybar main &
-MONITOR=DisplayPort-2 polybar side &
+MONITOR=DisplayPort-0 polybar -r side &
+MONITOR=DisplayPort-1 polybar -r main &
+MONITOR=DisplayPort-2 polybar -r side &
