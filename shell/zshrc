@@ -10,5 +10,5 @@ $(source_recursive_files "${SCRIPT_DIR}/zshrc.d/" '*.zsh')
 unsetopt GLOB_SUBST
 
 printf %s "${SOURCE_FILES}" | while read -r SOURCE_FILE; do
-	if [ ! -z "${SOURCE_FILE}" ]; then . "${SOURCE_FILE}"; fi
+	if [ ! -z "${SOURCE_FILE}" ]; then source "${SOURCE_FILE}"; fi
 done 
