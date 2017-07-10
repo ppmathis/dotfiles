@@ -57,7 +57,7 @@ echo "> Finished. Complete package list: ${PACKAGES}"
 #  [Package - Generic] Shell {{{
 package "generic" "shell" && {
 	gitdl "https://github.com/chriskempson/base16-shell.git" "base16-shell"
-	gitdl "https://github.com/zsh-users/antigen.git" "antigen"
+	gitdl "https://github.com/zplug/zplug.git" "zplug"
 	link "shell/zshrc" ".zshrc"
 }
 # }}}
