@@ -1,14 +1,22 @@
+source_recursive() {
+	local DIRECTORY=${1%/}
+	local GLOB=${2}
+
+	if [ -d "${DIRECTORY}" ]; then
+		setopt GLOB_SUBST
+		FILES=("${DIRECTORY}"/${GLOB})
+		unsetopt GLOB_SUBST
+
+		for FILE in ${FILES}; do
+			if [ -e "${FILE}" ]; then
+				source "${FILE}"
+			fi
+		done
+	fi
+}
+
 SCRIPT_DIR="$(dirname -- "$(readlink -f -- "${(%):-%N}")")"
 export DOTFILES="$(readlink -f -- "${SCRIPT_DIR}/..")"
 
-source "${SCRIPT_DIR}/init.sh"
-setopt GLOB_SUBST
-SOURCE_FILES="
-$(source_recursive_files "${SCRIPT_DIR}/rc.d/" '*.sh')
-$(source_recursive_files "${SCRIPT_DIR}/zshrc.d/" '*.zsh')
-"
-unsetopt GLOB_SUBST
-
-printf %s "${SOURCE_FILES}" | while read -r SOURCE_FILE; do
-	if [ ! -z "${SOURCE_FILE}" ]; then source "${SOURCE_FILE}"; fi
-done 
+source_recursive "${SCRIPT_DIR}/rc.d/" '*.sh'
+source_recursive "${SCRIPT_DIR}/zshrc.d/" '*.zsh'
