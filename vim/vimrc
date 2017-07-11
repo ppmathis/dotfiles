@@ -16,6 +16,7 @@ call vundle#begin()
 	Plugin 'ternjs/tern_for_vim'
 	Plugin 'sbdchd/neoformat'
 	Plugin 'saltstack/salt-vim'
+	Plugin 'w0rp/ale'
 call vundle#end()
 " }}}
 " Color Scheme {{{
