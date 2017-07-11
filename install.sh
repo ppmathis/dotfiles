@@ -67,6 +67,11 @@ package "generic" "shell" && {
 	link "shell/zshrc" ".zshrc"
 }
 # }}}
+# [Package - Generic] Tmux {{{
+package "generic" "tmux" & {
+	link "tmux/tmux.conf" ".tmux.conf"
+}
+# }}}
 # [Package - Generic] Vim {{{
 package "generic" "vim" & {
 	gitdl "https://github.com/VundleVim/Vundle.vim.git" "vundle"
