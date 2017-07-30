@@ -17,3 +17,5 @@ export LC_ALL="en_US.UTF-8"
 export LESS_TERMCAP_md="${yellow}"
 
 export MANPAGER="less -X"
+
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
