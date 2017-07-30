@@ -1,9 +1,16 @@
 #! /bin/sh
+ENV_HOSTNAME="$(hostname -s)"
+ENV_MONITOR="$(xrandr -q | grep ' connected' | cut -d ' ' -f1)"
+
 sxhkd &
 
-bspc monitor DisplayPort-0 -d I II III
-bspc monitor DisplayPort-1 -d IV V VI
-bspc monitor DisplayPort-2 -d VII VIII IV V
+if [[ "${ENV_HOSTNAME}" == "gravity" ]]; then
+	bspc monitor DisplayPort-0 -d I II III
+	bspc monitor DisplayPort-1 -d IV V VI
+	bspc monitor DisplayPort-2 -d VII VIII IX X
+else
+	bspc monitor -d I II III IV V VI VII VIII IX X
+fi
 
 bspc config border_width 1
 bspc config window_gap 12
@@ -28,6 +35,10 @@ bspc rule -a URxvt:profanity desktop=^3
 bspc rule -a xfreerdp desktop=^9 state=tiled locked=true private=true
 bspc rule -a keepass2 desktop=^10 state=tiled locked=true private=true
 
-MONITOR=DisplayPort-0 polybar -r side &
-MONITOR=DisplayPort-1 polybar -r main &
-MONITOR=DisplayPort-2 polybar -r side &
+if [[ "${ENV_HOSTNAME}" == "gravity" ]]; then
+	MONITOR=DisplayPort-0 polybar -r side &
+	MONITOR=DisplayPort-1 polybar -r main &
+	MONITOR=DisplayPort-2 polybar -r side &
+else
+	MONITOR="${ENV_MONITOR}" polybar -r main &
+fi
