@@ -5,6 +5,8 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'mafredri/zsh-async'
 zplug 'ppmathis/snappy', use:snappy.zsh, as:theme
 
+zplug 'lukechilds/zsh-nvm'
+
 zplug 'zsh-users/zsh-completions', defer:2
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'zsh-users/zsh-history-substring-search', defer:3
