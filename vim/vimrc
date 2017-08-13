@@ -84,6 +84,7 @@ set laststatus=2
 " }}}
 " [Plugin] NERDTree {{{
 let g:NERDTreeShowHidden=1
+let g:NERDTreeIgnore=['.git$[[dir]]', '.swp']
 " }}}
 " Autogroups {{{
 augroup configgroup
