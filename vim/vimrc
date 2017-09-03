@@ -1,3 +1,29 @@
+" Generic Options {{{
+syntax enable			" Enable syntax highlighting
+set hidden				" Allow hiding of unsaved buffers
+set history=1000		" Remember the last 1000 commands
+set ttyfast				" Increase speed of redrawing
+set tabstop=4			" Set tab size to 4 spaces
+set softtabstop=4		" Set soft tab size to 4 spaces
+set shiftwidth=4		" Shift by 4 spaces for auto-indentation
+set smartindent			" Enable smart indentation
+set autoindent			" Enable auto indentation
+set number				" Show line numbers
+set cursorline			" Highlight current line
+set wildmenu			" Enable visual autocomplete for command menu
+set lazyredraw			" Redraw only when needed
+set showmatch			" Highlight matching () / [] / {}
+set incsearch			" Search as soon as characters are entered
+set hlsearch			" Highlight matches when searching
+set foldenable			" Enable folding
+set foldlevelstart=10	" Start folding after 10 lines
+set foldnestmax=10		" Do not nest folding more than 10 times
+set foldmethod=indent	" Fold on indentation level
+set modelines=1			" Use modelines
+set pastetoggle=<F2>	" Use F2 key to toggle paste mode
+let mapleader=","		" Use comma as leader key
+let maplocalleader="\\" " Use backslash as local leader key
+" }}}
 " Vundle Plugin Manager {{{
 set nocompatible
 filetype off
@@ -17,6 +43,7 @@ call vundle#begin()
 	Plugin 'sbdchd/neoformat'
 	Plugin 'saltstack/salt-vim'
 	Plugin 'w0rp/ale'
+	Plugin 'lervag/vimtex'
 call vundle#end()
 " }}}
 " Color Scheme {{{
@@ -27,32 +54,10 @@ else
 	:silent! colorscheme base16-tomorrow-night
 endif
 " }}}
-" Generic Options {{{
+" File Type Settings {{{
 filetype plugin on
 filetype indent on
-syntax enable			" Enable syntax highlighting
-set hidden				" Allow hiding of unsaved buffers
-set history=100			" Remember the last 100 commands
-set ttyfast				" Increase speed of redrawing
-set tabstop=4			" Set tab size to 4 spaces
-set softtabstop=4		" Set soft tab size to 4 spaces
-set shiftwidth=4		" Shift by 4 spaces for auto-indentation
-set smartindent			" Enable smart indentation
-set autoindent			" Enable auto indentation
-set number				" Show line numbers
-set cursorline			" Highlight current line
-set wildmenu			" Enable visual autocomplete for command menu
-set lazyredraw			" Redraw only when needed
-set showmatch			" Highlight matching () / [] / {}
-set incsearch			" Search as soon as characters are entered
-set hlsearch			" Highlight matches when searching
-set foldenable			" Enable folding
-set foldlevelstart=10	" Start folding after 10 lines
-set foldnestmax=10		" Do not nest folding more than 10 times
-set foldmethod=indent	" Fold on indentation level
-set modelines=1			" Use modelines
-let mapleader=","		" Use comma as leader key
-" }}}
+" }}} 
 " Keyboard Shortcuts {{{
 " <j>/<k>: Move vertically by visual lines
 nnoremap j gj
@@ -65,6 +70,8 @@ nnoremap <space> za
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 " <Leader><l> Toggle absolute/relative line numbering
 nnoremap <leader>l :call ToggleNumber()<CR>
+" <CMD><w!!> Write file with sudo rights
+cmap w!! w !sudo tee % >/dev/null
 " }}}
 " [Plugin] CtrlP {{{
 let g:ctrlp_match_window = 'bottom,order:ttb'
@@ -85,6 +92,9 @@ set laststatus=2
 " [Plugin] NERDTree {{{
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['.git$[[dir]]', '.swp']
+" }}}
+" [Plugin] vimtex {{{
+let g:vimtex_view_method = 'zathura'
 " }}}
 " Autogroups {{{
 augroup configgroup
