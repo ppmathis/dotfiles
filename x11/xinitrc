@@ -18,7 +18,7 @@ xrdb -merge -I "$HOME" ~/.Xresources
 xsetroot -cursor_name left_ptr
 
 # Launch urxvt terminal daemon
-urxvtd -q -f -o
+# urxvtd -q -f -o
 
 # Launch redshift to reduce eye strain
 redshift &

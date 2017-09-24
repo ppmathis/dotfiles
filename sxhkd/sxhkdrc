@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	urxvt
+	termite
 
 # program launcher
 super + space
@@ -19,7 +19,7 @@ super + Escape
 
 # terminal scratchpad
 alt + s
-	tdrop -m -a -y 35 -w -2 -h 30% urxvt
+	tdrop -m -a -y 35 -w -2 -h 30% termite
 
 # keepass auto-type
 ctrl + alt + k

@@ -1,8 +1,9 @@
 [options]
+allow_bold = false
 clickable_url = true
 cursor_blink = system
 cursor_shape = block
-font = DejaVuSansMono Nerd Font 12
+font = MesloLGS Nerd Font 11
 scroll_on_output = false
 scroll_on_keystroke = true
 
@@ -28,3 +29,5 @@ color12 = #81a2be
 color13 = #b294bb
 color14 = #8abeb7
 color15 = #ffffff
+
+# vim: ft=dosini cms=#%s
