@@ -125,6 +125,7 @@ df_package "Workstation" "X11" && {
 df_package "Workstation" "GTK" && {
 	df_link "gtk/gtk2-settings" ".gtkrc-2.0"
 	df_link "gtk/gtk3-settings" ".config/gtk-3.0/settings.ini"
+	df_link "gtk/gtk3-stylesheet" ".config/gtk-3.0/gtk.css"
 }
 # }}}
 # [Package - Workstation] bspwm {{{
