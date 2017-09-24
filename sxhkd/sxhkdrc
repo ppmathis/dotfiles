@@ -19,7 +19,7 @@ super + Escape
 
 # terminal scratchpad
 alt + s
-	tdrop -m -a -y 35 -w -2 -h 30% termite
+	tdrop -m -a -y 35 -w -2 -h 30% -s scratchpad termite
 
 # keepass auto-type
 ctrl + alt + k
