@@ -32,6 +32,7 @@ bspc desktop ^10 -l monocle
 bspc rule -a Chromium desktop=^1
 bspc rule -a Firefox desktop=^1
 bspc rule -a URxvt:profanity desktop=^3
+bspc rule -a Termite:profanity desktop=^3
 bspc rule -a xfreerdp desktop=^9 state=tiled locked=true private=true
 bspc rule -a keepass2 desktop=^10 state=tiled locked=true private=true
 
