@@ -44,6 +44,7 @@ call vundle#begin()
 	Plugin 'saltstack/salt-vim'
 	Plugin 'w0rp/ale'
 	Plugin 'lervag/vimtex'
+	Plugin 'rust-lang/rust.vim'
 call vundle#end()
 " }}}
 " Color Scheme {{{
@@ -57,7 +58,7 @@ endif
 " File Type Settings {{{
 filetype plugin on
 filetype indent on
-" }}} 
+" }}}
 " Keyboard Shortcuts {{{
 " <j>/<k>: Move vertically by visual lines
 nnoremap j gj
