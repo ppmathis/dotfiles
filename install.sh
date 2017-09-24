@@ -137,6 +137,11 @@ df_package "Workstation" "sxhkd" && {
 	df_link "sxhkd/sxhkdrc" ".config/sxhkd/sxhkdrc"
 }
 # }}}
+# [Package - Workstation] Termite {{{
+df_package "Workstation" "termite" && {
+	df_link "termite/config" ".config/termite/config"
+}
+# }}}
 # [Package - Workstation] Compton {{{
 df_package "Workstation" "Compton" && {
 	df_link "compton/config" ".config/compton/config"

@@ -1,0 +1,30 @@
+[options]
+clickable_url = true
+cursor_blink = system
+cursor_shape = block
+font = DejaVuSansMono Nerd Font 12
+scroll_on_output = false
+scroll_on_keystroke = true
+
+[colors]
+foreground = #c5c8c6
+foreground_bold = #e0e0e0
+cursor = #e0e0e0
+background = rgba(29, 31, 33, 0.95)
+
+color0 = #1d1f21
+color1 = #cc6666
+color2 = #b5bd68
+color3 = #f0c674
+color4 = #81a2be
+color5 = #b294bb
+color6 = #8abeb7
+color7 = #c5c8c6
+color8 = #969896
+color9 = #cc6666
+color10 = #b5bd68
+color11 = #f0c674
+color12 = #81a2be
+color13 = #b294bb
+color14 = #8abeb7
+color15 = #ffffff
