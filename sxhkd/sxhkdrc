@@ -27,10 +27,10 @@ ctrl + alt + k
 
 # brightness controls
 XF86MonBrightnessDown
-	~/.local/bin/backlight.sh -
+	~/.local/scripts/de-backlight.sh -
 
 XF86MonBrightnessUp
-	~/.local/bin/backlight.sh +
+	~/.local/scripts/de-backlight.sh +
 
 # volume controls
 XF86AudioLowerVolume
