@@ -17,17 +17,21 @@ xrdb -merge -I "$HOME" ~/.Xresources
 # Change x11 root cursor
 xsetroot -cursor_name left_ptr
 
-# Launch urxvt terminal daemon
-# urxvtd -q -f -o
-
 # Launch redshift to reduce eye strain
 redshift &
 
-# Start compton compositor
+# Launch unclutter to hide mouse after inactivity
+unclutter &
+
+# Launch compton compositor
 compton --config ~/.config/compton/config &
 
-# Launch wallpaper script
-~/.local/bin/wallpaper.sh &
+# Launch desktop environment scripts
+~/.local/scripts/de-wallpaper.sh &
+~/.local/scripts/de-polybar.sh &
+
+# Launch hotkey daemon
+sxhkd &
 
 # Start bspwm
 exec bspwm

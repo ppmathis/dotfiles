@@ -76,6 +76,9 @@ df_git() {
 df_package "Common" "Cleanup" && {
 	ssbl_debug_cmd rm -vrf "${DF_SOURCE}/thirdparty/antigen"
 	ssbl_debug_cmd rm -vrf "${DF_TARGET}/.antigen"
+	ssbl_debug_cmd rm -vrf "${DF_TARGET}/.local/bin/wallpaper.sh"
+	ssbl_debug_cmd rm -vrf "${DF_TARGET}/.local/bin/backlight.sh"
+	ssbl_debug_cmd rm -vrf "${DF_TARGET}/.local/lib/ssbl.sh"
 }
 # }}}
 # [Package - Common] Shell {{{
@@ -171,9 +174,7 @@ df_package "Workstation" "Profanity" && {
 # }}}
 #  [Package - Workstation] Scripts {{{
 df_package "Workstation" "scripts" && {
-	df_link "scripts/ssbl.sh" ".local/lib/ssbl.sh"
-	df_link "scripts/backlight.sh" ".local/bin/backlight.sh"
-	df_link "scripts/wallpaper.sh" ".local/bin/wallpaper.sh"
+	df_link "scripts/" ".local/scripts"
 }
 # }}}
 

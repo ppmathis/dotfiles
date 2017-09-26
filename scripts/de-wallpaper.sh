@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source "${HOME}/.local/lib/ssbl.sh"
+source "${HOME}/.local/scripts/lib-ssbl.sh"
 
 main() {
 	# Detect screen resolution
