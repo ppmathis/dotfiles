@@ -10,27 +10,25 @@ case "$(hostname -s)" in
 		;;
 esac
 
-bspc config border_width 1
-bspc config window_gap 12
-bspc config split_ratio 0.52
+bspc config border_width 0
+bspc config window_gap 10
+bspc config split_ratio 0.5
 bspc config borderless_monocle true
 bspc config gapless_monocle true
+bspc config click_to_focus true
 
 bspc config super mod4
 bspc config pointer_action1 move
 bspc config pointer_action2 none
 bspc config pointer_action3 resize_corner
-bspc config click_to_focus true
 bspc config presel_feedback_color \#aaaaaa
 
 bspc desktop ^1 -l monocle
-bspc desktop ^9 -l monocle
-bspc desktop ^10 -l monocle
 
 bspc rule -a Chromium desktop=^1
 bspc rule -a Firefox desktop=^1
-bspc rule -a URxvt:profanity desktop=^3
-bspc rule -a Termite:profanity desktop=^3
-bspc rule -a xfreerdp desktop=^9 state=tiled locked=true private=true
-bspc rule -a keepass2 desktop=^10 state=tiled locked=true private=true
+bspc rule -a URxvt:profanity desktop=^2
+bspc rule -a Termite:profanity desktop=^2
+bspc rule -a xfreerdp desktop=^9
+bspc rule -a KeePass2 desktop=^10
 bspc rule -a Pinentry state=floating
