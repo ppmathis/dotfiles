@@ -35,6 +35,7 @@ bspc rule -a URxvt:profanity desktop=^3
 bspc rule -a Termite:profanity desktop=^3
 bspc rule -a xfreerdp desktop=^9 state=tiled locked=true private=true
 bspc rule -a keepass2 desktop=^10 state=tiled locked=true private=true
+bspc rule -a Pinentry state=floating
 
 if [[ "${ENV_HOSTNAME}" == "gravity" ]]; then
 	MONITOR=DisplayPort-0 polybar -r side &
