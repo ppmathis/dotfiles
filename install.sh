@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source "$(dirname "${0}")/scripts/ssbl.sh"
+source "$(dirname "${0}")/scripts/lib-ssbl.sh"
 
 declare DF_PACKAGES=""
 readonly DF_SOURCE="${SSBL_SCRIPT_PATH}"
