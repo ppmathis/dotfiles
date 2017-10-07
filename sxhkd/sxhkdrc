@@ -42,7 +42,7 @@ XF86AudioMute
 
 # wallpaper rotation
 super + alt + space
-	~/.local/bin/wallpaper.sh
+	~/.local/scripts/de-wallpaper.sh
 
 #
 # bspwm hotkeys
