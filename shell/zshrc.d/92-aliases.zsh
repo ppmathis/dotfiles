@@ -18,6 +18,9 @@ alias egrep='egrep --color=auto'
 # Enable alias support for sudo
 alias sudo='sudo '
 
+# Print file without empty lines or comments (compact cat)
+alias ccat='egrep -v "^[[:blank:]]*#|^[[:blank:]]*$"'
+
 # Get current week number
 alias week='date +%V'
 
