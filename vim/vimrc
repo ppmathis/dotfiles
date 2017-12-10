@@ -45,6 +45,7 @@ call vundle#begin()
 	Plugin 'w0rp/ale'
 	Plugin 'lervag/vimtex'
 	Plugin 'rust-lang/rust.vim'
+	Plugin 'fatih/vim-go'
 call vundle#end()
 " }}}
 " Color Scheme {{{
