@@ -1,0 +1,24 @@
+# Skip execution for non-interactive shells
+if [[ $- != *i* ]] || [[ -z "${PS1}" ]]; then
+	return 0
+fi
+
+source_glob() {
+	local DIRECTORY="${1%/}"
+	local PATTERN="${2}"
+
+	if [[ -d "${DIRECTORY}" ]]; then
+		FILES=(${DIRECTORY}/${PATTERN})
+		for FILE in "${FILES[@]}"; do
+			if [[ -r "${FILE}" ]]; then
+				source "${FILE}"
+			fi
+		done
+	fi
+}
+
+SCRIPT_DIR="$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")"
+export DOTFILES="$(readlink -f -- "${SCRIPT_DIR}/..")"
+
+source_glob "${SCRIPT_DIR}/rc.d/" "*.sh"
+source_glob "${SCRIPT_DIR}/bash.d/" "*.sh"

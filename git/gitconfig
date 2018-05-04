@@ -1,0 +1,46 @@
+[alias]
+	s = status -s
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	p = !"git pull; git submodule foreach git pull origin master"
+	c = clone --recursive
+
+	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+	contributors = shortlog --summary --numbered
+
+[apply]
+	whitespace = fix
+
+[core]
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+	trustctime = false
+	precomposeunicode = false
+	autocrlf = input
+
+[commit]
+	gpgsign = true
+
+[credential]
+	helper = cache --timeout=3600
+
+[diff]
+	renames = copies
+
+[diff "bin"]
+	textconv = hexdump -v -C
+
+[merge]
+	log = true
+
+[push]
+	default = simple
+	followTags = true
+
+[user]
+	name = Pascal Mathis
+	email = mail@pascalmathis.com
+	signingkey = E208DBA7BFC9B28C
