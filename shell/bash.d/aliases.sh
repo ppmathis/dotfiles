@@ -31,6 +31,7 @@ alias ccat='egrep -v "^[[:blank:]]*#|^[[:blank:]]*$"'
 alias map='xargs -n1'
 alias path='echo -e "${PATH//:/\\n}"'
 alias reload='exec ${SHELL} -l'
+alias sshni='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias untar='tar xvf'
 alias week='date +%V'
 
