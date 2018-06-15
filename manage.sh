@@ -38,3 +38,5 @@ df_custom vim +PluginInstall +qall
 unset -f df_link
 unset DF_SOURCE
 unset DF_TARGET
+
+exit 0
