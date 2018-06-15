@@ -16,6 +16,11 @@ df_link() {
 	ssbl_debug_cmd ln -vfs "${_source}" "${_target}"
 }
 
+df_custom() {
+	ssbl_log "Executing custom command: ${@}"
+	ssbl_debug_cmd "${@}"
+}
+
 df_link "shell/bashrc" ".bashrc"
 df_link "x11/Xresources" ".Xresources"
 df_link "gtk/gtk2-settings" ".gtkrc-2.0"
@@ -24,6 +29,11 @@ df_link "git/gitattributes" ".gitattributes"
 df_link "git/gitconfig" ".gitconfig"
 df_link "git/gitignore" ".gitignore"
 df_link "tmux/tmux.conf" ".tmux.conf"
+
+df_link "thirdparty/vundle" ".vim/bundle/Vundle.vim"
+df_link "vim/vimrc" ".vimrc"
+df_link "vim/vimrc-background" ".vimrc_background"
+df_custom vim +PluginInstall +qall
 
 unset -f df_link
 unset DF_SOURCE
