@@ -13,7 +13,7 @@ df_link() {
 	fi
 
 	ssbl_debug_cmd mkdir -vp "$(dirname "${_target}")"
-	ssbl_debug_cmd ln -vfs "${_source}" "${_target}"
+	ssbl_debug_cmd ln -vfns "${_source}" "${_target}"
 }
 
 df_custom() {
