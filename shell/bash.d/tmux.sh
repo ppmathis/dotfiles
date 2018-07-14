@@ -16,12 +16,13 @@ __tmux_get_current_window() {
 }
 
 __tmux_command() {
-	local __tmux_window
+	local __tmux_prefix="${1}"; shift
+	local __tmux_window=""
 
 	if [[ "$(ps -p $(ps -p $$ -o ppid=) -o comm= | cut -d':' -f1)" == "tmux" ]]; then
 		__tmux_window="$(__tmux_get_current_window)"
 		trap "tmux set-window-option -t ${__tmux_window} automatic-rename on 1>/dev/null" RETURN
-		tmux rename-window "$(__tmux_get_hostname ${*})"
+		tmux rename-window "${__tmux_prefix}$(__tmux_get_hostname ${*})"
 	fi
 
 	command "${@}"
@@ -30,5 +31,5 @@ __tmux_command() {
 if command -v "${_dependency_}" &>/dev/null; then
 	[[ -z "${TMUX}" ]] && { tmux attach || exec tmux new-session && exit; }
 
-	alias ssh='__tmux_command ssh'
+	alias ssh='__tmux_command "@" "ssh"'
 fi
