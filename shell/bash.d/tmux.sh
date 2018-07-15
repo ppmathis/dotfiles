@@ -28,7 +28,7 @@ __tmux_command() {
 	command "${@}"
 }
 
-if command -v "${_dependency_}" &>/dev/null; then
+if command -v "tmux" &>/dev/null; then
 	[[ -z "${TMUX}" ]] && { tmux attach || exec tmux new-session && exit; }
 
 	alias ssh='__tmux_command "@" "ssh"'
