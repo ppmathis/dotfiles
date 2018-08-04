@@ -1,10 +1,3 @@
-deps() {
-	for _dependency_ in "${@}"; do
-		command -v "${_dependency_}" &>/dev/null || return 1
-	done
-	return 0
-}
-
 alias sudo='sudo '
 
 alias ..='cd ..'
@@ -35,29 +28,29 @@ alias sshni='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias untar='tar xvf'
 alias week='date +%V'
 
-deps 'top' && alias top='htop'
-deps 'vim' && alias vi='vim'
+__df_deps 'top' && alias top='htop'
+__df_deps 'vim' && alias vi='vim'
 
-deps 'dig' && {
+__df_deps 'dig' && {
 	alias wipd4='dig +short myip.opendns.com @resolver1.opendns.com'
 	alias wipd6='dig +short -6 myip.opendns.com @resolver1.ipv6-sandbox.opendns.com'
 }
-deps 'curl' && {
+__df_deps 'curl' && {
 	alias wip='curl https://icanhazip.com/'
 	alias wip4='curl -4 https://icanhazip.com/'
 	alias wip6='curl -6 https://icanhazip.com/'
 }
-[[ -z "${wip}" ]] && deps 'GET' && alias wip='GET https://icanhazip.com/'
+[[ -z "${wip}" ]] && __df_deps 'GET' && alias wip='GET https://icanhazip.com/'
 
-if deps 'python3'; then
+if __df_deps 'python3'; then
 	alias urldecode='python3 -c "import sys, urllib.parse as lib; print(lib.unquote_plus(sys.argv[1]))"'
 	alias urlencode='python3 -c "import sys, urllib.parse as lib; print(lib.quote_plus(sys.argv[1]))"'
-elif deps 'python'; then
+elif __df_deps 'python'; then
 	alias urldecode='python -c "import sys, urllib as lib; print(lib.unquote_plus(sys.argv[1]))"'
 	alias urlencode='python -c "import sys, urllib as lib; print(lib.quote_plus(sys.argv[1]))"'
 fi
 
-if deps 'tree'; then
+if __df_deps 'tree'; then
 	alias tree='tree -C'
 	alias ltree='tree | less -R'
 else
@@ -65,15 +58,13 @@ else
 	alias ltree='tree | less -R'
 fi
 
-if deps 'pbpaste'; then
+if __df_deps 'pbpaste'; then
 	alias gclip='pbpaste'
-	alias pclip='pbcopy'
-elif deps 'xclip'; then
+	alias sclip='pbcopy'
+elif __df_deps 'xclip'; then
 	alias gclip='xclip -selection clipboard -o'
-	alias pclip='xclip -selection clipboard -i'
+	alias sclip='xclip -selection clipboard -i'
 elif [[ "${SYSTEM_TYPE}" == "MINGW" ]] || [[ "${SYSTEM_TYPE}" == "CYGWIN" ]]; then
 	alias gclip='cat /dev/clipboard'
-	alias pclip='cat >/dev/clipboard'
+	alias sclip='cat >/dev/clipboard'
 fi
-
-unset -f deps

@@ -28,8 +28,15 @@ __tmux_command() {
 	command "${@}"
 }
 
-if command -v "tmux" &>/dev/null; then
-	[[ -z "${TMUX}" ]] && { tmux attach || exec tmux new-session && exit; }
+if __df_deps "tmux"; then
+	[[ -z "${TMUX}" ]] && {
+		tmux new-session -d -s main
 
-	alias ssh='__tmux_command "@" "ssh"'
+		exec tmux new-session -t main \; \
+			set-option destroy-unattached \; \
+			set-environment -g TMUX_CLIPBOARD_GET "$(__df_ralias gclip)" \; \
+			set-environment -g TMUX_CLIPBOARD_SET "$(__df_ralias sclip)"
+	} || {
+		alias ssh='__tmux_command "@" "ssh"'
+	}
 fi
