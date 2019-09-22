@@ -1,9 +1,19 @@
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+alias sudo='sudo '
 
-alias sudo="sudo "
-alias ccat="egrep -v '^[[:blank:]]*#|^[[:blank:]]*$'"
-alias bell="tput bel"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+alias rm='rm --preserve-root -I'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+alias week='date +%V'
+alias bell='tput bel'
+alias ccat='egrep -v "^[[:blank:]]*#|^[[:blank:]]*$"'
+alias path='echo -e "${PATH//:/\\n}"'
+alias sshni='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+
 alias reload="exec ${SHELL} -l"
