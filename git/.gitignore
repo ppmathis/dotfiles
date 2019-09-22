@@ -1,0 +1,16 @@
+# Windows
+Desktop.ini
+Thumbs.db
+
+# Mac OS X
+._*
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+# Vim Editor
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+*~
