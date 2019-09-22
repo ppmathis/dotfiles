@@ -11,6 +11,7 @@ declare -gra BASE_PACKAGES=(
 
 declare -gra USER_PACKAGES=(
 	git
+	tilix
 )
 
 # shellcheck disable=2059
