@@ -35,6 +35,7 @@ call plug#begin()
 	Plug 'junegunn/fzf.vim'
 	Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
+	Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --clangd-completer --go-completer' }
 	Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " }}}
@@ -91,6 +92,9 @@ augroup configgroup
 	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+	" Do not open files in NERDTree buffer
+	autocmd BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
 augroup END
 " }}}
 " Custom Functions {{{
