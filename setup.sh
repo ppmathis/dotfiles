@@ -10,6 +10,7 @@ declare -gra BASE_PACKAGES=(
 )
 
 declare -gra USER_PACKAGES=(
+	fonts
 	git
 	tilix
 	vim
