@@ -35,7 +35,8 @@ pkg_stow() {
 	local _target="${2:-${HOME}}"
 
 	log_info "Stowing package [${_package}] to [${_target}]..."
-	stow -v -R -d "${DOT}" -t "${_target}" "${_package}"
+	stow -v -R -d "${DOT}" -t "${_target}" "${_package}" 2>&1 \
+		| grep -e "^LINK:" || true
 }
 
 main() {
