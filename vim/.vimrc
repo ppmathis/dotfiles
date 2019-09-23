@@ -31,7 +31,10 @@ call plug#begin()
 	Plug 'joshdick/onedark.vim'
 	Plug 'itchyny/lightline.vim'
 	Plug 'scrooloose/nerdtree'
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+	Plug 'junegunn/fzf.vim'
 	Plug 'tpope/vim-fugitive'
+	Plug 'airblade/vim-gitgutter'
 	Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " }}}
@@ -60,6 +63,12 @@ nnoremap <space> za
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 nnoremap <leader>l :call ToggleLineNumbers()<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
+
+" FZF Bindings
+nnoremap <leader><leader> :GFiles<CR>
+nnoremap <leader><CR> :Buffers<CR>
+nnoremap <leader>fi :Files<CR>
+nnoremap <leader>fl :Lines<CR>
 " }}}
 " [Plugin] Lightline {{{
 
