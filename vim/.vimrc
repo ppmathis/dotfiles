@@ -20,6 +20,7 @@ set number				" Show line numbers
 set pastetoggle=<F2>	" Toggle paste mode using F2 key
 set shiftwidth=4		" Shift by 4 spaces for auto-indent
 set showmatch			" Highlight matching braces
+set showtabline=2		" Always display tab line
 set smartindent			" Enable smart indentation
 set softtabstop=4		" Set soft tab size to 4 spaces
 set tabstop=4			" Set tab size to 4 spaces
@@ -30,6 +31,7 @@ set wildmenu			" Enable visual autocomplete for commands
 call plug#begin()
 	Plug 'joshdick/onedark.vim'
 	Plug 'itchyny/lightline.vim'
+	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'scrooloose/nerdtree'
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 	Plug 'junegunn/fzf.vim'
@@ -60,10 +62,32 @@ filetype indent on
 let mapleader=","			" Use comma as leader key
 let maplocalleader="\\"		" Use backslash as local leader key
 
+" <Space> Toggle fold marks
 nnoremap <space> za
+" <Esc><Esc>: Disable search highlighting
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+" <Leader><l>: Toggle absolute / relative line numbering
 nnoremap <leader>l :call ToggleLineNumbers()<CR>
+" <Ctrl+N>: Toggle NERD tree
 nnoremap <C-n> :NERDTreeToggle<CR>
+
+" <g><V>: Highlight last inserted text
+nnoremap gV `[v`]
+" <j>/<k>: Move vertically by visual lines
+nnoremap j gj
+nnoremap k gk
+
+" <0-9>: Buffer Quick Switch
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 " FZF Bindings
 nnoremap <leader><leader> :GFiles<CR>
@@ -72,10 +96,13 @@ nnoremap <leader>fi :Files<CR>
 nnoremap <leader>fl :Lines<CR>
 " }}}
 " [Plugin] Lightline {{{
-
 let g:lightline = {
 			\ 'colorscheme': 'onedark',
+			\ 'tabline': {'left': [['buffers']], 'right': [['buffers']]},
+			\ 'component_expand': {'buffers': 'lightline#bufferline#buffers'},
+			\ 'component_type': {'buffers': 'tabsel'},
 			\ }
+let g:lightline#bufferline#show_number=2
 " }}}
 " [Plugin] NERDTree {{{
 let g:NERDTreeShowHidden=1
@@ -96,6 +123,10 @@ augroup configgroup
 	" Do not open files in NERDTree buffer
 	autocmd BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
 augroup END
+" }}}
+" Custom Commands {{{
+" <w!!>: Write file using sudo privileges
+cmap w!! w !sudo tee % >/dev/null
 " }}}
 " Custom Functions {{{
 function! ToggleLineNumbers()
