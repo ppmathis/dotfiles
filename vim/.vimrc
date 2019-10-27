@@ -37,6 +37,7 @@ call plug#begin()
 	Plug 'junegunn/fzf.vim'
 	Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
+	Plug 'rhysd/vim-clang-format'
 	Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --clangd-completer --go-completer' }
 	Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -68,6 +69,8 @@ nnoremap <space> za
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 " <Leader><l>: Toggle absolute / relative line numbering
 nnoremap <leader>l :call ToggleLineNumbers()<CR>
+" <Leader><x>: Close current buffer
+nnoremap <leader>x :bp<cr>:bd #<cr>
 " <Ctrl+N>: Toggle NERD tree
 nnoremap <C-n> :NERDTreeToggle<CR>
 
