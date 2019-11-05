@@ -1,0 +1,88 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+declare -gr SOURCE_FILE="${1:-}"
+declare -gr WEBDAV_HOST="zig.pw"
+declare -gr WEBDAV_USER="$(id -un)"
+declare -gra SECRET_ATTRS=(
+	"protocol" "webdav"
+	"server" "${WEBDAV_HOST}"
+	"username" "${WEBDAV_USER}"
+)
+
+secret_clear() {
+	secret-tool clear "${SECRET_ATTRS[@]}"
+}
+
+secret_fetch() {
+	local _secret _rc
+
+	while [[ -z "${_secret:-}" ]]; do
+		_secret="$(secret-tool lookup "${SECRET_ATTRS[@]}")"; _rc="${?}"
+
+		if [[ "${_rc}" -ne 0 ]] || [[ -z "${_secret}" ]]; then
+			echo "Please enter password for WebDAV account ${WEBDAV_USER}@${WEBDAV_HOST}" >&2
+			secret_clear
+			secret-tool store --label "WebDAV ${WEBDAV_USER}@${WEBDAV_HOST}" "${SECRET_ATTRS[@]}"
+		fi
+	done
+
+	echo "${_secret}"
+}
+
+main() {
+	local _password _timestamp _checksum _target _target_url _status
+
+	# Ensure proper source file was given
+	if [[ ! -f "${SOURCE_FILE}" ]]; then
+		echo "usage: ${0} <source-file>":w
+		exit 1
+	fi
+
+	# Retrieve WebDAV accout password from keyring
+	_password="$(secret_fetch)"
+
+	# Calculate checksum of file contents and timestamp
+	_timestamp="$(date +'%s')"
+	_checksum="$(cat "${SOURCE_FILE}" <(echo "${_timestamp}") \
+		| sha1sum - | awk '$0=$1')"
+
+	# Build target filename and URL
+	_target="${_checksum}.${SOURCE_FILE##*.}"
+	_target_url="https://${WEBDAV_HOST}/${_target}"
+	echo "Source File: ${SOURCE_FILE}"
+	echo "Checksum: ${_checksum}"
+	echo "Target File: ${_target}"
+	echo "Target URL: ${_target_url}"
+	echo
+
+	# Attempt WebDAV upload using curl
+	echo ">> Attempting WebDAV Upload using cURL..."
+	_status="$(echo "--user ${WEBDAV_USER}:${_password}" \
+		| curl -fsSL --write-out %{http_code} -K- -X PUT -T "${SOURCE_FILE}" \
+		"https://${WEBDAV_HOST}/webdav/${_target}" || true)"
+
+	# Report success if HTTP status code 200 was returned
+	if [[ "${_status}" -ge 200 ]] || [[ "${_status}" -le 299 ]]; then
+		echo ">> Upload successful!"
+		if command -v wl-copy &>/dev/null; then
+			echo "${_target_url}" | wl-copy
+			echo ">> Copied target URL to Wayland clipboard."
+		fi
+		exit 0
+	fi
+
+	# Clear keyring secret if HTTP status code 401 was returned
+	if [[ "${_status}" == "401" ]]; then
+		echo ">> Cleared keyring secret due to [401 Unauthorized]."
+		secret_clear
+	fi
+
+	# Report error with status code
+	echo ">> An error occurred. HTTP status code: ${_status}"
+}
+
+main
+
+
