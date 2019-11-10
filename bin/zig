@@ -2,9 +2,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-declare -gr SOURCE_FILE="${1:-}"
-declare -gr WEBDAV_HOST="zig.pw"
+# shellcheck disable=SC2155
 declare -gr WEBDAV_USER="$(id -un)"
+declare -gr WEBDAV_HOST="zig.pw"
+declare -gr SOURCE_FILE="${1:-}"
 declare -gra SECRET_ATTRS=(
 	"protocol" "webdav"
 	"server" "${WEBDAV_HOST}"
@@ -32,20 +33,20 @@ secret_fetch() {
 }
 
 main() {
-	local _password _timestamp _checksum _target _target_url _status
+	local _password _random _checksum _target _target_url _status
 
 	# Ensure proper source file was given
 	if [[ ! -f "${SOURCE_FILE}" ]]; then
-		echo "usage: ${0} <source-file>":w
+		echo "usage: ${0} <source-file>"
 		exit 1
 	fi
 
 	# Retrieve WebDAV accout password from keyring
 	_password="$(secret_fetch)"
 
-	# Calculate checksum of file contents and timestamp
-	_timestamp="$(date +'%s')"
-	_checksum="$(cat "${SOURCE_FILE}" <(echo "${_timestamp}") \
+	# Calculate checksum of file contents and random value
+	_random="$(openssl rand -base64 32)"
+	_checksum="$(cat "${SOURCE_FILE}" <(echo "${_random}") \
 		| sha1sum - | awk '$0=$1')"
 
 	# Build target filename and URL
@@ -60,7 +61,7 @@ main() {
 	# Attempt WebDAV upload using curl
 	echo ">> Attempting WebDAV Upload using cURL..."
 	_status="$(echo "--user ${WEBDAV_USER}:${_password}" \
-		| curl -fsSL --write-out %{http_code} -K- -X PUT -T "${SOURCE_FILE}" \
+		| curl -fsSL --write-out '%{http_code}' -K- -X PUT -T "${SOURCE_FILE}" \
 		"https://${WEBDAV_HOST}/webdav/${_target}" || true)"
 
 	# Report success if HTTP status code 200 was returned
@@ -84,5 +85,3 @@ main() {
 }
 
 main
-
-
