@@ -1,0 +1,2 @@
+setopt globdots
+setopt rmstarsilent
