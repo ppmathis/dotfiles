@@ -48,3 +48,6 @@
 	name = Pascal Mathis
 	email = mail@pascalmathis.com
 	signingkey = E208DBA7BFC9B28C
+
+[include]
+	path = ~/.gitconfig.local
