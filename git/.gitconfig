@@ -47,6 +47,9 @@
 	default = simple
 	followTags = true
 
+[pull]
+	rebase = merges
+
 [user]
 	name = Pascal Mathis
 	email = mail@pascalmathis.com
