@@ -1,8 +1,9 @@
 SPACESHIP_PROMPT_ORDER=(
 	user		# Username section
-	dir		# Current directory section
+	dir			# Current directory section
 	host		# Hostname section
-	git		# Git section (git_branch + git_status)
+	git			# Git section (git_branch + git_status)
+	node		# Node.js section
 	golang		# Go section
 	docker		# Docker section
 	venv		# virtualenv section
