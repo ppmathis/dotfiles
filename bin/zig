@@ -61,7 +61,8 @@ main() {
 	# Attempt WebDAV upload using curl
 	echo ">> Attempting WebDAV Upload using cURL..."
 	_status="$(echo "--user ${WEBDAV_USER}:${_password}" \
-		| curl -fsSL --write-out '%{http_code}' -K- -X PUT -T "${SOURCE_FILE}" \
+		| curl -fsSL --limit-rate 750K --progress-bar \
+		--write-out '%{http_code}' -K- -X PUT -T "${SOURCE_FILE}" \
 		"https://${WEBDAV_HOST}/webdav/${_target}" || true)"
 
 	# Report success if HTTP status code 200 was returned
