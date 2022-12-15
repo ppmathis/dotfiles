@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# shellcheck source=./dot_local/share/shell/lib.sh.tmpl
+. "{{ .xdg.dataDir }}/shell/lib.sh"
+
+# Meslo Nerd Font
+# {{- if eq .chezmoi.os "darwin" }}
+dot_log "Installing Meslo LG NerdFont via Homebrew..."
+brew tap homebrew/cask-fonts
+brew install --cask font-meslo-lg-nerd-font
+# {{- end }}

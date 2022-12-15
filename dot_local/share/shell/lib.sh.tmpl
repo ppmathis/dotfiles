@@ -1,0 +1,50 @@
+#!/bin/sh
+
+dot_alternative() {
+	for command in "${@}"; do
+		if dot_has "${command}"; then
+			command -v "${command}"
+			return
+		fi
+	done
+	dot_error "missing dependency: none of [${*}] found"
+}
+
+dot_error() {
+	dot_log "${@}" >&2
+}
+
+dot_fetch() {
+	if dot_has curl; then
+		curl -fsSL "${1}"
+	elif dot_has wget; then
+		wget -qO- "${1}"
+	else
+		dot_error "missing dependency: curl or wget is required"
+	fi
+}
+
+dot_has() {
+	command -v "${1}" >/dev/null 2>&1
+}
+
+dot_log() {
+	fmt="${1}"; shift
+	printf "[%s] DOT: ${fmt}\n" "$(date)" "${@}"
+}
+
+dot_path_append() {
+	if [ ! -d "${1}" ]; then return; fi
+	case ":${PATH}:" in
+		*":${1}:"*) ;;
+		*) PATH="${PATH:+"${PATH}:"}${1}"
+	esac
+}
+
+dot_path_prepend() {
+	if [ ! -d "${1}" ]; then return; fi
+	case ":${PATH}:" in
+		*":${1}:"*) ;;
+		*) PATH="${1}${PATH:+":${PATH}"}"
+	esac
+}

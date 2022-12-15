@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# shellcheck source=./dot_local/share/shell/lib.sh.tmpl
+. "{{ .xdg.dataDir }}/shell/lib.sh"
+
+# Create local binary directory
+dot_log "Ensuring local binary directory exists..."
+mkdir -p "${HOME}/.local/bin"
+
+# Create XDG base directories
+dot_log "Ensuring XDG base directories exist..."
+mkdir -p "{{ .xdg.cacheDir }}"
+mkdir -p "{{ .xdg.configDir }}"
+mkdir -p "{{ .xdg.dataDir }}"
+mkdir -p "{{ .xdg.stateDir }}"

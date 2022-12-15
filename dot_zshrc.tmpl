@@ -1,0 +1,42 @@
+#!/bin/zsh
+# shellcheck shell=bash
+
+set -eu
+# shellcheck source=./dot_local/share/shell/common.sh.tmpl
+. "{{ .xdg.dataDir }}/shell/common.sh"
+set +eu
+
+# Persistence
+################################################################################
+mkdir -p "${XDG_CACHE_HOME}/zsh"
+mkdir -p "${XDG_STATE_HOME}/zsh"
+
+# History
+################################################################################
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt INC_APPEND_HISTORY_TIME
+
+export HISTFILE="${XDG_STATE_HOME}/zsh/history"
+export HISTSIZE=10000
+export SAVEHIST=${HISTSIZE}
+export SHELL_SESSIONS_DISABLE=1
+
+# Auto Completion
+################################################################################
+autoload -Uz compinit
+compinit
+
+# Keybinds
+################################################################################
+set -o emacs
+
+# Shell
+################################################################################
+if dot_has starship; then
+	eval "$(starship init zsh)"
+fi
