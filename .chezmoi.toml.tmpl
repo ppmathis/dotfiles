@@ -1,0 +1,5 @@
+[data.xdg]
+cacheDir = {{ joinPath .chezmoi.homeDir ".cache" | quote }}
+configDir = {{ joinPath .chezmoi.homeDir ".config" | quote }}
+dataDir = {{ joinPath .chezmoi.homeDir ".local" "share" | quote }}
+stateDir = {{ joinPath .chezmoi.homeDir ".local" "state" | quote }}
