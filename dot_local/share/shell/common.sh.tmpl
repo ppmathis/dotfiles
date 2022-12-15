@@ -107,6 +107,7 @@ dot_has kubectl && alias k="kubectl"
 alias clip="tr -d '\n' | pbcopy"
 alias mip4="curl https://ipv4.icanhazip.com"
 alias mip6="curl https://ipv6.icanhazip.com"
+alias sandbox='pushd "$(mktemp -d)"'
 alias week='date +%V'
 
 # [ALIAS] Open Command
@@ -117,23 +118,25 @@ alias open='xdg-open'
 alias open='explorer.exe'
 # {{- end }}
 
-# [FUNCTION] Make & Enter Directory
+# [FUNCTION] Create and enter directory
 ################################################################################
 mkd() {
 	mkdir -vp "$@" && cd "${1}" || return
 }
 
-# [FUNCTION] DNS Query
+# [FUNCTION] Execute DNS Query with Dig
 ################################################################################
 dns() {
 	dig +nocmd +multiline +noall +answer "${@}"
 }
 
-# [FUNCTION] Open Directory from File Manager
+# [FUNCTION] Open directory currently open in top-most file manager
 ################################################################################
+# {{- if eq .chezmoi.os "darwin" }}
 cdf() {
 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')" || return
 }
+# {{- end }}
 
 # [FUNCTION] Open Directory with File Manager
 ################################################################################
