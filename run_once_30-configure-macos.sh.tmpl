@@ -1,0 +1,64 @@
+#!/bin/sh
+# shellcheck disable=SC2317
+
+# shellcheck source=./dot_local/share/shell/lib.sh.tmpl
+. "{{ .xdg.dataDir }}/shell/lib.sh"
+
+# Close System Preferences
+dot_only_macos
+osascript -e 'tell application "System Preferences" to quit'
+
+# Dock
+################################################################################
+# Style
+defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock show-process-indicators -bool true
+defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock tilesize -int 90
+
+# Animations
+defaults write com.apple.dock launchanim -bool false
+defaults write com.apple.dock mineffect -string "scale"
+
+# Auto-Hide
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -int 0
+defaults write com.apple.dock autohide-time-modifier -float 0.4
+
+# Hot Corners: Top Left - Mission Control
+defaults write com.apple.dock wvous-tl-corner -int 2
+defaults write com.apple.dock wvous-tl-modifier -int 0
+
+# Hot Corners: Top Right - Desktop
+defaults write com.apple.dock wvous-tr-corner -int 4
+defaults write com.apple.dock wvous-tr-modifier -int 0
+
+# Hot Corners: Bottom Left - No Action
+defaults write com.apple.dock wvous-bl-corner -int 0
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# Hot Corners: Bottom Right - Quick Note
+defaults write com.apple.dock wvous-br-corner -int 14
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+# Finder
+################################################################################
+# Folders on Top
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+# File Extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Path Bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Mission Control
+################################################################################
+# Disable Auto-Arrangement
+defaults write com.apple.dock mru-spaces -bool false
+
+# Service Restart
+################################################################################
+killall Dock
+killall Finder

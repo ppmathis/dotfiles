@@ -32,6 +32,11 @@ dot_path_prepend "${HOME}/.local/bin"
 EDITOR="$(dot_alternative vim nano vi)"
 export EDITOR
 
+# [ENV] Locale
+################################################################################
+export LANG="${LANG:-en_US.UTF-8}"
+export LC_ALL="${LC_ALL:-en_US.UTF-8}"
+
 # [ENV] Utilities
 ################################################################################
 export GOPROXY="https://proxy.golang.org,direct"
@@ -68,3 +73,10 @@ alias rm='rm -I --preserve-root'
 alias bell='tput bel'
 alias path='echo -e "${PATH//:/\\n}"'
 alias reload='exec ${SHELL} -l'
+
+# [ALIAS] Compatibility
+################################################################################
+dot_has md5sum || alias md5sum="md5"
+dot_has sha1sum || alias sha1sum="shasum -a 1"
+dot_has sha256sum || alias sha256sum="shasum -a 256"
+dot_has sha512sum || alias sha512sum="shasum -a 512"

@@ -33,6 +33,26 @@ dot_log() {
 	printf "[%s] DOT: ${fmt}\n" "$(date)" "${@}"
 }
 
+# shellcheck disable=SC2317
+dot_only_linux() {
+	# {{- if ne .chezmoi.os "linux" }}
+	dot_log "skipping [${0}] due to system not running Linux"
+	exit 0
+	# {{- else }}
+	return
+	# {{- end }}
+}
+
+# shellcheck disable=SC2317
+dot_only_macos() {
+	# {{- if ne .chezmoi.os "darwin" }}
+	dot_log "skipping [${0}] due to system not running macOS"
+	exit 0
+	# {{- else }}
+	return
+	# {{- end }}
+}
+
 dot_path_append() {
 	if [ ! -d "${1}" ]; then return; fi
 	case ":${PATH}:" in
