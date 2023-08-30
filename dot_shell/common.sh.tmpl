@@ -1,0 +1,98 @@
+#!/bin/zsh
+# shellcheck shell=bash
+
+# Dotfiles Library
+# shellcheck source=lib.sh.tmpl
+source "${HOME}/.shell/lib.sh"
+
+# Alias nesting
+alias sudo="sudo "
+alias watch="watch "
+alias xargs="xargs "
+
+# Directory traversal
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# Binary aliases
+dot_alias firefox /Applications/Firefox.app/Contents/MacOS/firefox
+dot_alias tailscale /Applications/Tailscale.app/Contents/MacOS/Tailscale
+
+# Command aliases
+alias ls="command ls --color"
+alias l="ls -lF"
+alias la="ls -lAF"
+alias lsd="ls -lF | grep --color=never '^d'"
+
+# Command compatibility
+dot_only_macos alias hd="hexdump -C"
+dot_only_macos alias md5sum="md5"
+dot_only_macos alias sha1sum="shasum -a 1"
+dot_only_macos alias sha256sum="shasum -a 256"
+dot_only_macos alias sha512sum="shasum -a 512"
+
+# Command safety
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -I"
+
+dot_only_linux alias chgrp="chgrp --preserve-root"
+dot_only_linux alias chmod="chmod --preserve-root"
+dot_only_linux alias chown="chown --preserve-root"
+dot_only_linux alias rm="-I --preserve-root"
+
+# Command shortcuts
+dot_alias d docker
+dot_alias g git
+dot_alias k kubectl
+
+# Utility aliases
+alias bell="tput bel"
+alias clip="tr -d '\n' | pbcopy"
+alias map="xargs -n1"
+alias mip4="curl https://ipv4.icanhazip.com"
+alias mip6="curl https://ipv6.icanhazip.com"
+alias path='echo -e "${PATH//:/\\n}"'
+alias reload='exec ${SHELL} -l'
+alias week='date +%V'
+
+# Utility functions
+cdf() {
+    # {{- if eq .chezmoi.os "darwin" }}
+    path="$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
+    cd "${path}" || return
+    # {{- else }}
+    dot_unsupported_platform
+    # {{- end }}
+}
+
+dns() {
+    dig +nocmd +multiline +noall +answer "${@}"
+}
+
+mkd() {
+    mkdir -vp "$@"
+    cd "${1}" || return
+}
+
+open() {
+    # {{- if eq .chezmoi.os "darwin" }}
+    command open "${@}"
+    # {{- else if eq .chezmoi.os "linux" }}
+    xdg-open "${@}"
+    # {{- else if eq .chezmoi.os "windows" }}
+    start "${@}"
+    # {{- else }}
+    dot_unsupported_platform
+    # {{- end }}
+}
+
+sandbox() {
+    # {{- if eq .chezmoi.os "darwin" }}
+    pushd "$(mktemp -d -t sandbox)" || return
+    # {{- else }}
+    pushd "$(mktemp -d --tmpdir sandbox)" || return
+    # {{- end }}
+}

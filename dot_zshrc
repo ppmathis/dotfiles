@@ -7,10 +7,9 @@ if [[ -r "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" 
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Tailscale on macOS
-if [[ -x /Applications/Tailscale.app/Contents/MacOS/Tailscale ]]; then
-    alias tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
-fi
+# Common Shell Configuration
+# shellcheck source=dot_shell/common.sh.tmpl
+source "${HOME}/.shell/common.sh"
 
 # Powerlevel10k Shell Theme
 [[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"

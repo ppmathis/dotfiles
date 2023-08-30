@@ -1,0 +1,56 @@
+#!/bin/sh
+
+dot_alias() {
+    if dot_has "${2}"; then
+        # shellcheck disable=SC2139
+        alias "${1}"="${2}"
+    fi
+}
+
+dot_has() {
+    command -v "${1}" >/dev/null 2>&1
+}
+
+dot_is_linux() {
+    # {{- if eq .chezmoi.os "linux" }}
+    return 0
+    # {{- else }}
+    # shellcheck disable=SC2317
+    return 1
+    # {{- end }}
+}
+
+dot_is_macos() {
+    # {{- if eq .chezmoi.os "darwin" }}
+    return 0
+    # {{- else }}
+    # shellcheck disable=SC2317
+    return 1
+    # {{- end }}
+}
+
+dot_is_windows() {
+    # {{- if eq .chezmoi.os "windows" }}
+    return 0
+    # {{- else }}
+    # shellcheck disable=SC2317
+    return 1
+    # {{- end }}
+}
+
+dot_only_linux() {
+    ! dot_is_linux || "${@}"
+}
+
+dot_only_macos() {
+    ! dot_is_macos || "${@}"
+}
+
+dot_only_windows() {
+    ! dot_is_windows || "${@}"
+}
+
+dot_unsupported_platform() {
+    echo "Not supported on this platform: {{ .chezmoi.os }}" >&2
+    exit 1
+}
