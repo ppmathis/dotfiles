@@ -1,0 +1,9 @@
+Host *
+{{- if and (eq .chezmoi.os "darwin") (stat "/Applications/Strongbox.app") }}
+    IdentityAgent "~/Library/Group Containers/group.strongbox.mac.mcguill/agent.sock"
+{{- else if eq .chezmoi.os "darwin" }}
+    UseKeychain yes
+    AddKeysToAgent yes
+{{- end }}
+
+Include ~/.ssh/config.d/*.conf
