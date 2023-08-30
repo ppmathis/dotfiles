@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Configure iTerm2 to store configuration within dotfiles
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string '{{ joinPath .chezmoi.homeDir ".iterm" }}'
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true

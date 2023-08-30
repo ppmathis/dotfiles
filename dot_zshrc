@@ -1,0 +1,17 @@
+#!/bin/zsh
+# shellcheck shell=bash
+# shellcheck disable=SC1090,SC1091,SC2296
+
+# Powerlevel10k Instant Prompt
+if [[ -r "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Tailscale on macOS
+if [[ -x /Applications/Tailscale.app/Contents/MacOS/Tailscale ]]; then
+    alias tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
+fi
+
+# Powerlevel10k Shell Theme
+[[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
+source "${HOME}/.plugins/powerlevel10k/powerlevel10k.zsh-theme"

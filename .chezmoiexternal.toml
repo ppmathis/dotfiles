@@ -1,0 +1,5 @@
+[".plugins/powerlevel10k"]
+    type = "archive"
+    url = "https://github.com/romkatv/powerlevel10k/archive/refs/tags/v1.19.0.tar.gz"
+    checksum.sha256 = "ac3395e572b5d5b77813009fd206762268fc73b9d305c2a99f4f26ad6fecf024"
+    stripComponents = 1
