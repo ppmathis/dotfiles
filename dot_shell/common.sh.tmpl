@@ -96,3 +96,21 @@ sandbox() {
     pushd "$(mktemp -d --tmpdir sandbox)" || return
     # {{- end }}
 }
+
+# Integration: JetBrains Toolbox
+if dot_is_macos; then
+    if [[ -d "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts" ]]; then
+        dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
+    fi
+fi
+
+# Integration: Node Version Manager (NVM)
+if dot_is_macos && [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
+    export NVM_DIR="${HOME}/.nvm"
+    if [[ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ]]; then
+        source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
+    fi
+    if [[ -s "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ]]; then
+        source "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
+    fi
+fi

@@ -54,3 +54,19 @@ dot_unsupported_platform() {
     echo "Not supported on this platform: {{ .chezmoi.os }}" >&2
     exit 1
 }
+
+dot_path_append() {
+    if [ ! -d "${1}" ]; then return; fi
+    case ":${PATH}:" in
+        *":${1}:"*) ;;
+        *) PATH="${PATH:+"${PATH}:"}${1}"
+    esac
+}
+
+dot_path_prepend() {
+    if [ ! -d "${1}" ]; then return; fi
+    case ":${PATH}:" in
+        *":${1}:"*) ;;
+        *) PATH="${1}${PATH:+":${PATH}"}"
+    esac
+}
