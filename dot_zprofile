@@ -5,3 +5,8 @@
 if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# JetBrains
+if [[ -d "/Users/ppmathis/Library/Application Support/JetBrains/Toolbox/scripts" ]]; then
+    export PATH="${PATH}:/Users/ppmathis/Library/Application Support/JetBrains/Toolbox/scripts"
+fi
