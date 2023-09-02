@@ -18,6 +18,12 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -int 0
 defaults write com.apple.dock autohide-time-modifier -float 0.4
 
+# Controls: Mouse
+defaults write NSGlobalDomain com.apple.mouse.scaling 1.5
+
+# Controls: Keyboard
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
 # Controls: Three Finger Drag
 defaults write com.apple.AppleMultitouchTrackpad Dragging -bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
@@ -28,9 +34,8 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 defaults write com.apple.finder ShowPathbar -bool true
 
-# Global Defaults
+# Miscellaneous
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Apply Changes
 killall Dock
