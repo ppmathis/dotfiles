@@ -114,8 +114,3 @@ if dot_is_macos && [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
         source "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
     fi
 fi
-
-# Integration: Herd
-if dot_is_macos && [[ -d "${HOME}/Library/Application Support/Herd/bin" ]]; then
-    dot_path_append "${HOME}/Library/Application Support/Herd/bin"
-fi
