@@ -101,6 +101,11 @@ sandbox() {
 export GOPATH="${HOME}/go"
 dot_path_append "${HOME}/go/bin"
 
+# Integration: JetBrains Toolbox
+if dot_is_macos; then
+    dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
+fi
+
 # Integration: Laravel Sail
 sail() {
     if [[ -x "./vendor/bin/sail" ]]; then
@@ -109,11 +114,6 @@ sail() {
         command sail "${@}"
     fi
 }
-
-# Integration: JetBrains Toolbox
-if dot_is_macos; then
-    dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
-fi
 
 # Integration: Node Version Manager (NVM)
 if dot_is_macos && [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
@@ -125,3 +125,6 @@ if dot_is_macos && [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
         source "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
     fi
 fi
+
+# Integration: Rustup
+dot_path_append "${HOME}/.cargo/bin"
