@@ -1,0 +1,85 @@
+[alias]
+  c = commit
+  ca = !git add --all && git commit
+  cam = !git add --all && git commit -md = diff
+  cm = commit -m
+  dc = diff --cached
+  l = log --pretty=custom --graph
+  s = status --short
+  u = commit --amend --no-edit
+  ua = !git add --all && git commit --amend --no-edit
+  uap = !git add --all && git commit --amend --no-edit && git push --force-with-lease
+  um = commit --amend
+
+  branches = branch --list --all -vv
+  clone = clone --recursive
+  contributors = shortlog --summary --numbered --email
+  git = !exec git
+  remotes = remote -v
+  tags = tag -l
+  whoami = config user.email
+
+  sc = "!f() { git log --date=short --decorate --pretty=custom -S\"$1\"; }; f"
+  sm = "!f() { git log --date=short --decorate --pretty=custom --grep=\"$1\"; }; f"
+
+[apply]
+  whitespace = fix
+
+[core]
+  autocrlf = input
+  trustctime = false
+
+[commit]
+  gpgsign = true
+
+[core]
+  attributesFile = {{ joinPath .chezmoi.homeDir ".config/git/attributes" }}
+  excludesFile = {{ joinPath .chezmoi.homeDir ".config/git/excludes" }}
+
+[credential]
+{{- if eq .chezmoi.os "darwin" }}
+  helper = osxkeychain
+{{- else if eq .chezmoi.os "windows" }}
+  helper = wincred
+{{- else }}
+  helper = cache --timeout=3600
+{{- end }}
+
+[diff]
+  renames = copies
+
+[diff "bin"]
+  textconv = hexdump -Cv
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+{{- if and (eq .chezmoi.os "darwin") (stat "/Applications/1Password.app") }}
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+{{- end }}
+
+[includes]
+  path = {{ joinPath .chezmoi.homeDir ".config/git/local" }}
+
+[init]
+  defaultBranch = main
+
+[merge]
+  log = true
+
+[pull]
+  rebase = merges
+
+[pretty]
+  custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+
+[push]
+  autoSetupRemote = true
+  default = simple
+  followTags = true
+
+[user]
+  email = dev@ppmathis.com
+  name = Pascal Mathis
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBs2lSgwcl9pjg+aEFbCVzjsKtFk4KqQzMhSGXcVmws

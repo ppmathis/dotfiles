@@ -1,0 +1,53 @@
+#!/bin/sh
+# shellcheck shell=sh
+# chezmoi:template:left-delimiter="#{{" right-delimiter="}}"
+
+dot_alias_cmd() {
+  if dot_has_cmd "${2}"; then
+    # shellcheck disable=SC2139
+    alias "${1}"="${2}"
+  fi
+}
+
+dot_has_cmd() {
+  command -v "${1}" >/dev/null 2>&1
+}
+
+dot_os() {
+  # shellcheck disable=SC2194
+  case "#{{ .chezmoi.os }}" in
+    linux) echo "linux" ;;
+    darwin) echo "macos" ;;
+    windows) echo "windows" ;;
+    *) echo "unknown" ;;
+  esac
+}
+
+dot_only_linux() {
+  [ "$(dot_os)" != "linux" ] || "${@}"
+}
+
+dot_only_macos() {
+  [ "$(dot_os)" != "macos" ] || "${@}"
+}
+
+dot_path_append() {
+  if [ ! -d "${1}" ]; then return; fi
+  case ":${PATH}:" in
+    *":${1}:"*) ;;
+    *) PATH="${PATH:+"${PATH}:"}${1}"
+  esac
+}
+
+dot_path_prepend() {
+  if [ ! -d "${1}" ]; then return; fi
+  case ":${PATH}:" in
+    *":${1}:"*) ;;
+    *) PATH="${1}${PATH:+":${PATH}"}"
+  esac
+}
+
+dot_unsupported_os() {
+  echo "Not supported on this operating system: $(dot_os)" >&2
+  exit 1
+}

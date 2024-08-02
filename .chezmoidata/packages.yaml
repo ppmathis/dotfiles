@@ -1,0 +1,8 @@
+packages:
+  darwin:
+    brews:
+      - git
+      - starship
+    casks:
+      - font-meslo-lg-nerd-font
+    taps: []

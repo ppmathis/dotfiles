@@ -1,0 +1,6 @@
+#!/bin/zsh
+# shellcheck shell=sh
+
+eval "$(starship init zsh)"
+
+. {{ joinPath .chezmoi.homeDir ".config/shell/init.sh" | quote }}
