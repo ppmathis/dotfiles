@@ -17,7 +17,7 @@ dot_only_macos alias sha512sum='shasum -a 512'
 # Defaults
 alias bat='bat -A'
 alias ls='command ls --color=auto'
-alias ll='ls -aLF'
+alias ll='ls -alF'
 
 # Nesting
 alias sudo='sudo '
