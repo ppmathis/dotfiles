@@ -1,6 +1,25 @@
 #!/bin/zsh
 # shellcheck shell=sh
+# shellcheck source=dot_config/exact_shell/library.sh.tmpl
+. "${HOME}/.config/shell/library.sh"
 
+# ZSH Settings
+export HISTFILE="${HOME}/.zsh_history"
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
+setopt INC_APPEND_HISTORY_TIME
+
+alias history='\history -i'
+alias history-import='fc -RI'
+
+# Starship Shell
 eval "$(starship init zsh)"
 
-. {{ joinPath .chezmoi.homeDir ".config/shell/init.sh" | quote }}
+# Run shell-agnostic initialization
+dot_shell_init

@@ -47,6 +47,11 @@ dot_path_prepend() {
   esac
 }
 
+dot_shell_init() {
+  # shellcheck source=init.sh
+  . "${HOME}/.config/shell/init.sh"
+}
+
 dot_unsupported_os() {
   echo "Not supported on this operating system: $(dot_os)" >&2
   exit 1
