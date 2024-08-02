@@ -55,7 +55,7 @@ mkd() {
 # open: Open a file or directory using the default application
 open() {
   case "$(dot_os)" in
-    macos) open "$@" ;;
+    macos) command open "$@" ;;
     linux) xdg-open "$@" ;;
     windows) start "$@" ;;
     *) dot_unsupported_os ;;
