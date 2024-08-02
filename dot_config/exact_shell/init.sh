@@ -15,6 +15,7 @@ dot_only_macos alias sha256sum='shasum -a 256'
 dot_only_macos alias sha512sum='shasum -a 512'
 
 # Defaults
+alias bat='bat -A'
 alias ls='command ls --color=auto'
 alias ll='ls -aLF'
 

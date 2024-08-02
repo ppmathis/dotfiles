@@ -1,8 +1,10 @@
 packages:
   darwin:
     brews:
+      - bat
       - git
       - starship
+      - tree
     casks:
       - font-meslo-lg-nerd-font
     taps: []
