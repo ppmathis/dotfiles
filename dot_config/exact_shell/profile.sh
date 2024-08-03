@@ -1,7 +1,5 @@
 #!/bin/sh
 # shellcheck shell=sh
-# shellcheck source=library.sh.tmpl
-. "${HOME}/.config/shell/library.sh"
 
 # Common
 dot_path_append "${HOME}/.local/bin"

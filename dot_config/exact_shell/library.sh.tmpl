@@ -47,6 +47,11 @@ dot_path_prepend() {
   esac
 }
 
+dot_profile_init() {
+  # shellcheck source=profile.sh
+  . "${HOME}/.config/shell/profile.sh"
+}
+
 dot_shell_init() {
   # shellcheck source=init.sh
   . "${HOME}/.config/shell/init.sh"

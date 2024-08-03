@@ -1,7 +1,5 @@
 #!/bin/sh
 # shellcheck shell=sh
-# shellcheck source=library.sh.tmpl
-. "${HOME}/.config/shell/library.sh"
 
 # Binaries: macOS
 dot_alias_cmd firefox '/Applications/Firefox.app/Contents/MacOS/firefox'

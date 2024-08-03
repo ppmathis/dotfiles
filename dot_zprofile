@@ -1,0 +1,6 @@
+#!/bin/zsh
+# shellcheck shell=sh
+# shellcheck source=dot_config/exact_shell/library.sh.tmpl
+. "${HOME}/.config/shell/library.sh"
+
+dot_profile_init
