@@ -1,3 +1,4 @@
+Include {{ joinPath .chezmoi.homeDir ".ssh/config.local.d/*.conf" | quote }}
 Include {{ joinPath .chezmoi.homeDir ".ssh/config.d/*.conf" | quote }}
 
 Host *.snapserv.io
