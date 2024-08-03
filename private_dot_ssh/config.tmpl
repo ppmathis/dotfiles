@@ -1,9 +1,17 @@
+Include {{ joinPath .chezmoi.homeDir ".ssh/config.d/*.conf" | quote }}
+
+Host *.snapserv.io
+  StrictHostKeyChecking yes
+  VerifyHostKeyDNS yes
+
 Host *
+  EnableEscapeCommandLine yes
+  ServerAliveCountMax 3
+  ServerAliveInterval 300
+
 {{- if and (eq .chezmoi.os "darwin") (stat "/Applications/1Password.app") }}
   IdentityAgent {{ joinPath .chezmoi.homeDir "Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" | quote }}
 {{- else if eq .chezmoi.os "darwin" }}
-  UseKeychain yes
   AddKeysToAgent yes
+  UseKeychain yes
 {{- end }}
-
-Include {{ joinPath .chezmoi.homeDir ".ssh/config.d/*.conf" | quote }}
