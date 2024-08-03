@@ -1,0 +1,19 @@
+#!/bin/sh
+# chezmoi:template:left-delimiter="#{{" right-delimiter="}}"
+set -eu
+
+if [ "${CHEZMOI_OS}" != "darwin" ]; then
+  exit 0
+fi
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+#{{ range .packages.darwin.taps -}}
+tap #{{ . | quote }}
+#{{ end -}}
+#{{ range .packages.darwin.brews -}}
+brew #{{ . | quote }}
+#{{ end -}}
+#{{ range .packages.darwin.casks -}}
+cask #{{ . | quote }}
+#{{ end -}}
+EOF
