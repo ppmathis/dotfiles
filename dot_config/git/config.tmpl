@@ -60,9 +60,6 @@
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 {{- end }}
 
-[include]
-  path = {{ joinPath .chezmoi.homeDir ".config/git/local" }}
-
 [init]
   defaultBranch = main
 
@@ -84,3 +81,7 @@
   email = dev@ppmathis.com
   name = Pascal Mathis
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBs2lSgwcl9pjg+aEFbCVzjsKtFk4KqQzMhSGXcVmws
+
+# This must always be at the end of the file to properly support local overrides
+[include]
+  path = {{ joinPath .chezmoi.homeDir ".config/git/local" }}
