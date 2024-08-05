@@ -14,7 +14,7 @@ if [ -x "/opt/homebrew/bin/brew" ]; then
 fi
 
 # JetBrains Toolbox
-dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/bin"
+dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # NVM via Homebrew
 if [ -d "/opt/homebrew/opt/nvm" ]; then
