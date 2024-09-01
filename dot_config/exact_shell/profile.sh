@@ -22,3 +22,8 @@ if [ -d "/opt/homebrew/opt/nvm" ]; then
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 fi
+
+# Rustup
+if [ -f "${HOME}/.cargo/env" ]; then
+  . "${HOME}/.cargo/env"
+fi
