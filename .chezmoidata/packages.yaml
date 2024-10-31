@@ -1,7 +1,6 @@
 packages:
   darwin:
     brews:
-      - bat
       - git
       - starship
       - tree
