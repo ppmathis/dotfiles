@@ -3,7 +3,7 @@
 
 # macOS
 .AppleDouble/
-.DS_Store/
+.DS_Store
 .localized/
 .LSOverride/
 .Spotlight-V100/
