@@ -8,8 +8,8 @@
   l = log --pretty=custom --graph
   s = status --short
   u = commit --amend --no-edit
-  ua = !git add --all && git commit --amend --no-edit
-  uap = !git add --all && git commit --amend --no-edit && git push --force-with-lease
+  ua = !git add --all && git commit --amend --no-edit --date=now
+  uap = !git add --all && git commit --amend --no-edit --date=now && git push --force-with-lease
   um = commit --amend
 
   branches = branch --list --all -vv
