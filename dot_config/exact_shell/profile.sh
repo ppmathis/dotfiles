@@ -27,3 +27,8 @@ fi
 if [ -f "${HOME}/.cargo/env" ]; then
   . "${HOME}/.cargo/env"
 fi
+
+# Local Profile
+if [ -f "${HOME}/.local.sh" ]; then
+  . "${HOME}/.local.sh"
+fi
