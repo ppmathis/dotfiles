@@ -1,9 +1,7 @@
 packages:
   darwin:
     brews:
-      - git
       - starship
-      - tree
     casks:
       - font-meslo-lg-nerd-font
     taps: []

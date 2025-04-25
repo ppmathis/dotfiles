@@ -19,10 +19,3 @@ Thumbs.db
 %*
 *.sw[a-z]
 *.un~
-
-# VS Code
-.vscode/
-
-# JetBrains
-.idea/
-*.iml
