@@ -1,8 +1,11 @@
 #!/bin/sh
 # shellcheck shell=sh
 
-# Common
+# Paths
 dot_path_append "${HOME}/.local/bin"
+dot_path_append "${HOME}/go/bin"
+dot_path_append "${HOME}/.composer/vendor/bin"
+dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # Homebrew
 if [ -x "/opt/homebrew/bin/brew" ]; then
@@ -12,9 +15,6 @@ if [ -x "/opt/homebrew/bin/brew" ]; then
 
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-
-# JetBrains Toolbox
-dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # NVM via Homebrew
 if [ -d "/opt/homebrew/opt/nvm" ]; then
@@ -26,6 +26,11 @@ fi
 # Rustup
 if [ -f "${HOME}/.cargo/env" ]; then
   . "${HOME}/.cargo/env"
+fi
+
+# 1Password CLI
+if [ -f "${HOME}/.config/op/plugins.sh" ]; then
+  . "${HOME}/.config/op/plugins.sh"
 fi
 
 # Local Profile
