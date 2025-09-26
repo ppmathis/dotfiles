@@ -9,6 +9,7 @@ Host *
   EnableEscapeCommandLine yes
   ServerAliveCountMax 3
   ServerAliveInterval 300
+  SetEnv TERM=xterm-256color
 
 {{- if and (eq .chezmoi.os "darwin") (stat "/Applications/1Password.app") }}
   IdentityAgent {{ joinPath .chezmoi.homeDir "Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" | quote }}
