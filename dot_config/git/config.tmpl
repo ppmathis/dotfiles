@@ -77,6 +77,12 @@
   default = simple
   followTags = true
 
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
 [user]
   email = dev@ppmathis.com
   name = Pascal Mathis
