@@ -7,6 +7,9 @@ dot_path_append "${HOME}/go/bin"
 dot_path_append "${HOME}/.composer/vendor/bin"
 dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
 
+# Configs
+export UV_NATIVE_TLS="true"
+
 # Homebrew
 if [ -x "/opt/homebrew/bin/brew" ]; then
   export HOMEBREW_CASK_OPTS="--require-sha"
