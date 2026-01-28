@@ -23,3 +23,7 @@ eval "$(starship init zsh)"
 
 # Run shell-agnostic initialization
 dot_shell_init
+
+# Init shell completions
+autoload -Uz compinit
+compinit
