@@ -1,0 +1,8 @@
+font-family = MesloLGS Nerd Font Mono Regular
+font-size = 14.0
+keybind = global:ctrl+backquote=toggle_quick_terminal
+macos-auto-secure-input = true
+macos-option-as-alt = false
+macos-secure-input-indication = true
+macos-titlebar-style = native
+theme = light:One Half Light,dark:One Half Dark
