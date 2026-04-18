@@ -1,5 +1,5 @@
 #!/bin/sh
-# shellcheck shell=sh
+# shellcheck shell=sh disable=SC1091
 
 # Paths
 dot_path_append "${HOME}/.local/bin"
@@ -7,6 +7,7 @@ dot_path_append "${HOME}/go/bin"
 dot_path_append "${HOME}/.config/composer/vendor/bin"
 dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
 dot_path_append "${HOME}/Library/pnpm"
+dot_path_append "/opt/homebrew/opt/binutils/bin"
 
 # Configs
 export UV_NATIVE_TLS="true"
