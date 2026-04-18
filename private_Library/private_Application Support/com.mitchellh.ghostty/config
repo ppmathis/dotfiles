@@ -1,3 +1,5 @@
+background-blur = true
+background-opacity = 0.95
 font-family = MesloLGS Nerd Font Mono Regular
 font-size = 14.0
 keybind = global:ctrl+backquote=toggle_quick_terminal
