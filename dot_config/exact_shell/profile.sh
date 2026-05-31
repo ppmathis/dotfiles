@@ -5,9 +5,9 @@
 dot_path_append "${HOME}/.local/bin"
 dot_path_append "${HOME}/go/bin"
 dot_path_append "${HOME}/.config/composer/vendor/bin"
-dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
-dot_path_append "${HOME}/Library/pnpm"
 dot_path_append "/opt/homebrew/opt/binutils/bin"
+dot_path_append "/opt/homebrew/opt/rustup/bin"
+dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # Configs
 export UV_SYSTEM_CERTS="true"
@@ -30,12 +30,8 @@ fi
 
 # PNPM
 if [ -d "${HOME}/Library/pnpm" ]; then
+  dot_path_append "${HOME}/Library/pnpm"
   export PNPM_HOME="${HOME}/Library/pnpm"
-fi
-
-# Rustup
-if [ -f "${HOME}/.cargo/env" ]; then
-  . "${HOME}/.cargo/env"
 fi
 
 # 1Password CLI
