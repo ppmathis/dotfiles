@@ -10,7 +10,7 @@ dot_path_append "${HOME}/Library/pnpm"
 dot_path_append "/opt/homebrew/opt/binutils/bin"
 
 # Configs
-export UV_NATIVE_TLS="true"
+export UV_SYSTEM_CERTS="true"
 
 # Homebrew
 if [ -x "/opt/homebrew/bin/brew" ]; then
