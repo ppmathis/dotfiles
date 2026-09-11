@@ -3,6 +3,7 @@
 
 # Paths
 dot_path_append "${HOME}/.local/bin"
+dot_path_append "${HOME}/.docker/bin"
 dot_path_append "${HOME}/go/bin"
 dot_path_append "${HOME}/.config/composer/vendor/bin"
 dot_path_append "/opt/homebrew/opt/binutils/bin"
