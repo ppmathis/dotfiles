@@ -39,6 +39,11 @@ if [ -f "${HOME}/.config/op/plugins.sh" ]; then
   . "${HOME}/.config/op/plugins.sh"
 fi
 
+# 1Password SSH Agent
+if [ -S "${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" ]; then
+  export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+fi
+
 # Local Profile
 if [ -f "${HOME}/.local.sh" ]; then
   . "${HOME}/.local.sh"
