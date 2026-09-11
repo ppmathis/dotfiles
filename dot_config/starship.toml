@@ -1,7 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 [aws]
-disabled = true
 symbol = " "
 
 [buf]
