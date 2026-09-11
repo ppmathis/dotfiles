@@ -38,6 +38,7 @@ alias bell='tput bel'
 alias map='xargs -n1'
 alias path='echo -e "${PATH}" | tr ":" "\n"'
 alias reload='exec "${SHELL}" -l'
+alias ssh-raw='ssh -F /dev/null -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 # dns: Resolve DNS records using dig with minimal output
 dns() {
