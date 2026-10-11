@@ -1,0 +1,1 @@
+- Commit messages: Conventional Commits as `<type>: <description>`, never with a scope, entirely lowercase.
