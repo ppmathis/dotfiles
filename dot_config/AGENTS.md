@@ -3,6 +3,8 @@
 - Commit messages: Conventional Commits `<type>: <description>`
   - No scope, entirely lowercase, concise subject
   - Body only when it adds meaningful value, as short bullet points
+- Commit in feature-complete slices; every commit must stay runnable
+- Split by codebase area or architectural boundary, keep related changes together
 
 ## Python
 
