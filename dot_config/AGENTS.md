@@ -1,1 +1,5 @@
-- Commit messages: Conventional Commits as `<type>: <description>`, never with a scope, entirely lowercase.
+## Git
+
+- Commit messages: Conventional Commits `<type>: <description>`
+  - No scope, entirely lowercase, concise subject
+  - Body only when it adds meaningful value, as short bullet points
