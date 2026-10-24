@@ -22,11 +22,6 @@ alias sudo='sudo '
 alias watch='watch '
 alias xargs='xargs '
 
-# Safety
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-
 # Safety: Linux
 dot_only_linux alias chgrp='chgrp --preserve-root'
 dot_only_linux alias chmod='chmod --preserve-root'
