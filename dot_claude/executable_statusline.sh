@@ -34,12 +34,29 @@ print_limit() {
   printf " ${DIM}|${RESET} ${DIM}%s:${RESET} ${color}%s%% left${RESET}" "$1" "$left"
 }
 
+# Prints the time until an epoch timestamp, e.g. "3d 4h", "5h 12m" or "7m"
+format_reset() {
+  seconds=$(($1 - $(date +%s)))
+  [ "$seconds" -lt 0 ] && seconds=0
+  days=$((seconds / 86400))
+  hours=$((seconds % 86400 / 3600))
+  minutes=$((seconds % 3600 / 60))
+  if [ "$days" -gt 0 ]; then
+    printf '%sd %sh' "$days" "$hours"
+  elif [ "$hours" -gt 0 ]; then
+    printf '%sh %sm' "$hours" "$minutes"
+  else
+    printf '%sm' "$minutes"
+  fi
+}
+
 context_tokens=$(field '.context_window.total_input_tokens')
 context_max=$(field '.context_window.context_window_size')
 model=$(field '.model.display_name')
 effort=$(field '.effort.level')
 session_used=$(field '.rate_limits.five_hour.used_percentage')
 week_used=$(field '.rate_limits.seven_day.used_percentage')
+week_reset=$(field '.rate_limits.seven_day.resets_at')
 
 if [ -n "$model" ]; then
   printf "${DIM}model:${RESET} ${ORANGE}%s${RESET}" "$model"
@@ -52,4 +69,8 @@ printf "${DIM}context:${RESET} ${ORANGE}%s${RESET}" "$(format_tokens "${context_
 
 print_limit session "$session_used"
 print_limit week "$week_used"
+if [ -n "$week_reset" ]; then
+  reset_label=$(format_reset "${week_reset%.*}")
+  [ -n "$reset_label" ] && printf " ${DIM}(resets in %s)${RESET}" "$reset_label"
+fi
 echo
