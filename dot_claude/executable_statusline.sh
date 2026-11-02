@@ -57,6 +57,7 @@ effort=$(field '.effort.level')
 session_used=$(field '.rate_limits.five_hour.used_percentage')
 week_used=$(field '.rate_limits.seven_day.used_percentage')
 week_reset=$(field '.rate_limits.seven_day.resets_at')
+worktree=$(field '.worktree.name // .workspace.git_worktree')
 
 if [ -n "$model" ]; then
   printf "${DIM}model:${RESET} ${ORANGE}%s${RESET}" "$model"
@@ -73,4 +74,5 @@ if [ -n "$week_reset" ]; then
   reset_label=$(format_reset "${week_reset%.*}")
   [ -n "$reset_label" ] && printf " ${DIM}(resets in %s)${RESET}" "$reset_label"
 fi
+[ -n "$worktree" ] && printf " ${DIM}|${RESET} ${DIM}worktree:${RESET} ${ORANGE}%s${RESET}" "$worktree"
 echo
