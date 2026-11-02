@@ -1,18 +1,18 @@
 {
+  "agentPushNotifEnabled": true,
   "attribution": {
     "commit": "",
     "pr": "",
     "sessionUrl": false
   },
-  "tui": "fullscreen",
-  "remoteControlAtStartup": true,
-  "agentPushNotifEnabled": true,
-  "switchModelsOnFlag": false,
   "enabledPlugins": {
     "cc-plugin-you-should-know@builtin": true
   },
+  "remoteControlAtStartup": true,
   "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  }
+    "command": "~/.claude/statusline.sh",
+    "type": "command"
+  },
+  "switchModelsOnFlag": false,
+  "tui": "fullscreen"
 }
