@@ -9,6 +9,7 @@ dot_path_append "${HOME}/.config/composer/vendor/bin"
 dot_path_append "/opt/homebrew/opt/binutils/bin"
 dot_path_append "/opt/homebrew/opt/rustup/bin"
 dot_path_append "${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
+dot_path_append "/Applications/Postgres.app/Contents/Versions/latest/bin"
 
 # Configs
 export UV_SYSTEM_CERTS="true"
