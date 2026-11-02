@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+current=$(cat)
+[ -n "$current" ] || current='{}'
+
+managed=$(cat <<'MANAGED_JSON'
+{{ include "dot_claude/settings.managed.json" }}
+MANAGED_JSON
+)
+
+printf '%s' "$current" | jq --argjson managed "$managed" '. * $managed'

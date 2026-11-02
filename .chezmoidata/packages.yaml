@@ -1,6 +1,7 @@
 packages:
   darwin:
     brews:
+      - jq
       - starship
     casks:
       - font-meslo-lg-nerd-font
