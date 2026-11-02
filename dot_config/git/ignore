@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+._*
+
+# Windows
+Desktop.ini
+Thumbs.db
+
+# Editors
+*~
+*.sw[a-p]
+
+# Claude Code
+**/.claude/settings.local.json
