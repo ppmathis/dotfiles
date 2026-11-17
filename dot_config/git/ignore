@@ -10,6 +10,9 @@ Thumbs.db
 *~
 *.sw[a-p]
 
+# direnv
+.direnv/
+
 # Claude Code
 **/.claude/settings.local.json
 **/.claude/worktrees/
