@@ -1,0 +1,27 @@
+#!/bin/bash
+# shellcheck shell=bash
+
+# Interactive only, keeps non-interactive ssh commands (rsync, scp) quiet
+case $- in
+  *i*) ;;
+  *) return ;;
+esac
+
+# shellcheck source=dot_config/exact_shell/library.sh.tmpl
+. "${HOME}/.config/shell/library.sh"
+
+# Bash Settings
+export HISTSIZE=1000000000
+export HISTFILESIZE=1000000000
+export HISTCONTROL=ignoreboth:erasedups
+export HISTTIMEFORMAT='%F %T '
+
+shopt -s histappend
+
+# Starship Shell
+if dot_has_cmd starship; then
+  eval "$(starship init bash)"
+fi
+
+# Run shell-agnostic initialization
+dot_shell_init

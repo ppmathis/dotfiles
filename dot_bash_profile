@@ -1,0 +1,11 @@
+#!/bin/bash
+# shellcheck shell=bash
+# shellcheck source=dot_config/exact_shell/library.sh.tmpl
+. "${HOME}/.config/shell/library.sh"
+
+dot_profile_init
+
+# Login shells skip ~/.bashrc, so load it for interactive ones
+case $- in
+  *i*) . "${HOME}/.bashrc" ;;
+esac
