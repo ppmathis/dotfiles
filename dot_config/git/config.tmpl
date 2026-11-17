@@ -37,15 +37,21 @@
 {{- else }}
   helper = cache --timeout=3600
 {{- end }}
+{{- $gh := "" }}
 {{- if and (eq .chezmoi.os "darwin") (stat "/opt/homebrew/bin/gh") }}
+{{-   $gh = "/opt/homebrew/bin/gh" }}
+{{- else if eq .chezmoi.hostname "nebula" }}
+{{-   $gh = "/run/current-system/sw/bin/gh" }}
+{{- end }}
+{{- if $gh }}
 
 [credential "https://github.com"]
   helper =
-  helper = !/opt/homebrew/bin/gh auth git-credential
+  helper = !{{ $gh }} auth git-credential
 
 [credential "https://gist.github.com"]
   helper =
-  helper = !/opt/homebrew/bin/gh auth git-credential
+  helper = !{{ $gh }} auth git-credential
 {{- end }}
 
 [diff]
@@ -111,7 +117,13 @@
 [user]
   email = dev@ppmathis.com
   name = Pascal Mathis
+{{- /* Hosts without 1Password get their own revocable key, signed with directly (no agent) */}}
+{{- $hostSigningKey := joinPath .chezmoi.homeDir ".ssh/git_signing" }}
+{{- if stat $hostSigningKey }}
+  signingkey = {{ $hostSigningKey }}
+{{- else }}
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBs2lSgwcl9pjg+aEFbCVzjsKtFk4KqQzMhSGXcVmws
+{{- end }}
 
 # This must always be at the end of the file to properly support local overrides
 [include]
