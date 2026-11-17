@@ -8,6 +8,9 @@
   "enabledPlugins": {
     "cc-plugin-you-should-know@builtin": true
   },
+  "permissions": {
+    "defaultMode": "auto"
+  },
   "remoteControlAtStartup": true,
   "statusLine": {
     "command": "~/.claude/statusline.sh",
