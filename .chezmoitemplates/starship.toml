@@ -13,3 +13,6 @@ disabled = false
 
 [time]
 disabled = false
+
+[hostname]
+ssh_only = false
