@@ -13,12 +13,14 @@
 - Keep it out of git (e.g. via `.git/info/exclude`)
 - Contents: current state, next steps, open questions and how to continue; short, no fluff
 
-## Python
+## Code
 
-- Readable, descriptive names while staying pythonic (e.g. `_read_file` over `_read`)
+- Readable, descriptive identifiers in every language, while staying idiomatic (e.g. `_read_file` over `_read`)
+- Group related lines into sections separated by blank lines
 
-## Docstrings
+## Comments and docstrings
 
-- Avoid by default; only for complex behavior, non-obvious effects the name doesn't imply, or critical business rules
-- If one of several closely related functions needs one, give all of them one for consistency
+- Comments: single-line, only for sections that are hard for a human to read or whose reasoning isn't obvious from the code
+- Docstrings: avoid by default; only for complex behavior, non-obvious effects the name doesn't imply, or critical business rules
+- If one of several closely related functions needs a docstring, give all of them one for consistency
 - Short and concise, no fluff
